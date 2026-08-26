@@ -99,7 +99,7 @@ export const work = [
     summary:
       "A task-based VR simulation that teaches recycling through exploration, hands-on sorting and immediate feedback across familiar campus environments. Created collaboratively by the MCBÜ XR Lab team, with Deniz Akkoyun contributing as a developer.",
     stack: ["Virtual Reality", "Environmental Education", "XR Lab"],
-    href: "https://denizstudiox.github.io/eco-quest-vr/",
+    href: "https://denizstudiox.github.io/eco-quest-vr/index.html?v=20260826",
     linkLabel: "View project",
   },
   {
@@ -110,7 +110,7 @@ export const work = [
     summary:
       "A fast-paced VR sorting game where players identify objects through sound, glow and controller vibration, then race to place them correctly. Created collaboratively by the MCBÜ XR Lab team, with Deniz Akkoyun contributing as a developer.",
     stack: ["Virtual Reality", "Two-player", "XR Lab"],
-    href: "https://denizstudiox.github.io/sort-it-vr/",
+    href: "https://denizstudiox.github.io/sort-it-vr/index.html?v=20260826",
     linkLabel: "View project",
   },
   {
