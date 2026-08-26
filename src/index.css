@@ -1,0 +1,271 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Design tokens — "the blue flame"
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-void: #04050b;
+  --color-ground: #06070e;
+  --color-panel: #0b0d18;
+  --color-line: #171b2b;
+  --color-ink: #e9edf7;
+  --color-muted: #8590a8;
+  --color-faint: #545e78;
+
+  /* Flame: deep at the base, white-hot at the core */
+  --color-accent: #58b6ff;
+  --color-accent-core: #c7f0ff;
+  --color-accent-dim: #3a6ea8;
+  --color-accent-deep: #2340c8;
+
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-wordmark: "Cinzel", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-ground);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-void);
+  }
+
+  ::-webkit-scrollbar { width: 9px; }
+  ::-webkit-scrollbar-track { background: var(--color-void); }
+  ::-webkit-scrollbar-thumb {
+    background: #1e2438;
+    border-radius: 99px;
+    border: 2px solid var(--color-void);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #2c3450; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Utilities
+ * ------------------------------------------------------------------ */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+@utility wordmark {
+  font-family: var(--font-wordmark);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------------ *
+ * The three layers
+ * ------------------------------------------------------------------
+ * Custom properties inherit, so re-declaring the accent tokens on a
+ * layer wrapper re-tints every utility inside it — no per-component
+ * colour props needed.
+ * ------------------------------------------------------------------ */
+.layer-apeiron {
+  --color-accent: #58b6ff;
+  --color-accent-core: #c7f0ff;
+  --color-accent-dim: #3a6ea8;
+  --color-accent-deep: #2340c8;
+}
+
+.layer-veins {
+  --color-void: #050418;
+  --color-accent: #b98cff;
+  --color-accent-core: #ecdcff;
+  --color-accent-dim: #7c5cb8;
+  --color-accent-deep: #5b2fb0;
+  --color-line: #211a35;
+  --color-panel: #120c1e;
+  --color-muted: #9a92ad;
+}
+
+.layer-surface {
+  --color-void: #03110a;
+  --color-accent: #7fd99a;
+  --color-accent-core: #d9f7e3;
+  --color-accent-dim: #4c8f66;
+  --color-accent-deep: #1e6b41;
+  --color-line: #16281d;
+  --color-panel: #0b1710;
+  --color-muted: #8fa89a;
+  --color-faint: #5f7a6a;
+}
+
+/* Film grain */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+  0%,100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+/* Hairline rules that fade at the edges */
+.rule-x {
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-line) 12%,
+    var(--color-line) 88%,
+    transparent
+  );
+}
+
+/* Faint blueprint grid */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(120, 160, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(120, 160, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.mask-fade-b {
+  mask-image: linear-gradient(to bottom, #000 55%, transparent);
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #e6eeff 42%, #6f7c9c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Headline word lit by the layer accent */
+.text-glow {
+  background: linear-gradient(
+    180deg,
+    var(--color-accent-core) 0%,
+    var(--color-accent) 48%,
+    var(--color-accent-deep) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 26px color-mix(in srgb, var(--color-accent) 40%, transparent));
+}
+
+/* Corner brackets — codex plate framing */
+.plate::before,
+.plate::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--color-accent-dim);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out-expo);
+  pointer-events: none;
+}
+.plate::before {
+  top: 12px;
+  left: 12px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.plate::after {
+  bottom: 12px;
+  right: 12px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+.plate:hover::before,
+.plate:hover::after {
+  opacity: 1;
+}
+
+/* Continuous marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 38s linear infinite; }
+
+@keyframes float-slow {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(3%, -4%, 0) scale(1.06); }
+}
+.animate-float-slow { animation: float-slow 16s ease-in-out infinite; }
+
+/* Flame breathing — paired with the SVG turbulence */
+@keyframes flicker {
+  0%, 100% { opacity: 0.92; transform: scaleY(1) scaleX(1); }
+  25%      { opacity: 1;    transform: scaleY(1.04) scaleX(0.985); }
+  50%      { opacity: 0.86; transform: scaleY(0.97) scaleX(1.015); }
+  75%      { opacity: 0.97; transform: scaleY(1.02) scaleX(0.99); }
+}
+.animate-flicker {
+  animation: flicker 4.5s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+
+/* Rising embers */
+@keyframes ember {
+  0%   { transform: translate3d(0, 0, 0) scale(0.6); opacity: 0; }
+  12%  { opacity: 0.9; }
+  85%  { opacity: 0.5; }
+  100% { transform: translate3d(var(--drift, 12px), -220px, 0) scale(1); opacity: 0; }
+}
+.animate-ember {
+  animation: ember var(--dur, 7s) linear var(--delay, 0s) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
