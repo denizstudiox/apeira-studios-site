@@ -40,7 +40,7 @@ export const hero = {
   secondaryCta: { label: "Start a project", href: "#contact" },
   // Character-sheet style plate
   stats: [
-    { value: "06", label: "Shipped works" },
+    { value: "08", label: "Shipped works" },
     { value: "03", label: "Marketplaces" },
     { value: "04", label: "Platforms" },
     { value: "∞", label: "Prototypes" },
@@ -64,6 +64,7 @@ export const marquee = [
  *   href      — where the thing lives (store page, site). "" hides the link.
  *   linkLabel — text on that link. Defaults to "View project".
  *   repo      — optional source-code link, shown as a second "Source" link.
+ *   credit    — optional contribution note for collaborative projects
  *   featured  — spans the full row
  *   wip       — renders as "In development", no link
  */
@@ -89,6 +90,28 @@ export const work = [
     href: "https://denizstudiox.github.io/kubik/",
     linkLabel: "View project",
     featured: true,
+  },
+  {
+    title: "Eco Quest",
+    tag: "VR Experience",
+    year: "2026",
+    credit: "Team project · Developer",
+    summary:
+      "A task-based VR simulation that teaches recycling through exploration, hands-on sorting and immediate feedback across familiar campus environments. Created collaboratively by the MCBÜ XR Lab team, with Deniz Akkoyun contributing as a developer.",
+    stack: ["Virtual Reality", "Environmental Education", "XR Lab"],
+    href: "https://denizstudiox.github.io/eco-quest-vr/?v=727ca3e",
+    linkLabel: "View project",
+  },
+  {
+    title: "Sort It!",
+    tag: "VR Game",
+    year: "2026",
+    credit: "Team project · Developer",
+    summary:
+      "A fast-paced VR sorting game where players identify objects through sound, glow and controller vibration, then race to place them correctly. Created collaboratively by the MCBÜ XR Lab team, with Deniz Akkoyun contributing as a developer.",
+    stack: ["Virtual Reality", "Two-player", "XR Lab"],
+    href: "https://denizstudiox.github.io/sort-it-vr/",
+    linkLabel: "View project",
   },
   {
     title: "Shorts Shield",

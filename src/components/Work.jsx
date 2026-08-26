@@ -61,6 +61,11 @@ function Card({ item, index }) {
             <span className="rounded-full border border-line px-3 py-1 text-[11px] tracking-tight text-muted">
               {item.tag}
             </span>
+            {item.credit && (
+              <span className="rounded-full border border-accent-dim/40 bg-accent/5 px-3 py-1 text-[11px] tracking-tight text-accent-dim">
+                {item.credit}
+              </span>
+            )}
             {item.wip && (
               <span className="inline-flex items-center gap-1.5 rounded-full border border-accent-dim/50 px-3 py-1 text-[11px] tracking-tight text-accent">
                 <span className="size-1 animate-pulse rounded-full bg-accent" />
@@ -143,8 +148,8 @@ export default function Work() {
         </div>
         <Reveal delay={0.2}>
           <p className="max-w-xs text-sm leading-relaxed text-faint">
-            Games, mods, apps and tools — shipped on CurseForge, Google Play and
-            the Chrome Web Store.
+            Independent releases and selected team projects across games, mods,
+            apps and tools.
           </p>
         </Reveal>
       </div>
