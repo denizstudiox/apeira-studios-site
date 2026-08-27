@@ -3,7 +3,7 @@ import { Eyebrow, MaskLine, Reveal, Section } from "./ui";
 
 export default function Capabilities() {
   return (
-    <Section id="disciplines" className="bg-void/40">
+    <Section id="disciplines" className="bg-void/30">
       <div className="grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
@@ -17,14 +17,16 @@ export default function Capabilities() {
         </div>
 
         <div className="lg:col-span-8">
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
+          <div className="mystic-frame grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2">
             {capabilities.items.map((c, i) => (
               <Reveal
                 key={c.no}
                 delay={(i % 2) * 0.08}
-                className="plate group relative bg-ground p-8 transition-colors duration-500 hover:bg-panel"
+                className="plate group relative bg-ground/90 p-8 transition-colors duration-700 hover:bg-panel/90"
               >
-                <span className="display text-[16px] leading-none text-accent-dim">{c.no}</span>
+                <span className="sigil-number display inline-flex size-10 items-center justify-center text-[14px] leading-none text-accent">
+                  <span>{c.no}</span>
+                </span>
                 <h3 className="mt-6 text-[17px] font-medium tracking-tight text-ink">
                   {c.title}
                 </h3>

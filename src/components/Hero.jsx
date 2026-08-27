@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { hero } from "../content";
 import { Button, EASE } from "./ui";
-import Landscape, { Fireflies } from "./Landscape";
+import { Fireflies } from "./Landscape";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -12,6 +12,8 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 90]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.035, 1.12]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
@@ -20,27 +22,35 @@ export default function Hero() {
       ref={ref}
       className="relative flex min-h-[100svh] items-center overflow-hidden"
     >
-      {/* ---- The surface ---- */}
+      {/* ---- The threshold ---- */}
       <div className="absolute inset-0 -z-10">
-        <Landscape className="h-full w-full" scrollProgress={scrollYProgress} />
-        <Fireflies />
-
-        {/* keeps the type readable over the sky */}
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(4,7,13,0.88)_0%,rgba(4,7,13,0.6)_46%,rgba(4,7,13,0.18)_76%,transparent_100%)] lg:bg-[linear-gradient(to_right,rgba(4,7,13,0.82)_0%,rgba(4,7,13,0.45)_46%,transparent_78%)]"  />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#040f0d] to-transparent" />
+        <motion.img
+          src="/apeira-dream-hero.webp"
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          decoding="async"
+          className="dream-hero-image absolute inset-0 h-full w-full object-cover"
+          style={{ y: imageY, scale: imageScale }}
+        />
+        <div className="dream-vignette pointer-events-none absolute inset-0" />
+        <div className="dream-aurora pointer-events-none absolute inset-0" />
+        <div className="dream-orbit pointer-events-none absolute right-[8%] top-[14%] hidden size-[min(43vw,620px)] lg:block" />
+        <Fireflies count={22} />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#070611] via-[#070611]/82 to-transparent" />
       </div>
 
       {/* ---- Content ---- */}
       <motion.div
         style={{ y, opacity }}
-        className="mx-auto w-full max-w-[1240px] px-6 pb-24 pt-32 sm:px-10 lg:px-14"
+        className="mx-auto w-full max-w-[1240px] px-6 pb-20 pt-32 sm:px-10 lg:px-14"
       >
-        <div className="lg:max-w-[64%]">
+        <div className="lg:max-w-[61%]">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35, ease: EASE }}
-            className="mb-10 inline-flex items-center gap-2.5 rounded-full border border-line bg-panel/60 py-1.5 pl-3 pr-4 backdrop-blur-sm"
+            className="mystic-kicker mb-10 inline-flex items-center gap-2.5 border border-line/80 bg-panel/35 py-2 pl-3 pr-4 backdrop-blur-md"
           >
             <span className="relative flex size-1.5">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
@@ -49,7 +59,7 @@ export default function Hero() {
             <span className="eyebrow text-muted">{hero.status}</span>
           </motion.div>
 
-          <h1 className="display text-gradient text-[clamp(2.6rem,6.2vw,5.2rem)]">
+          <h1 className="display text-gradient text-[clamp(3rem,6.5vw,5.65rem)] leading-[0.92]">
             {hero.headline.map((line, i) => (
               <span key={i} className="block overflow-hidden pb-[0.08em]">
                 <motion.span
@@ -76,7 +86,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.85, ease: EASE }}
-            className="mt-9 max-w-xl text-[15px] leading-relaxed text-muted sm:text-[16px]"
+            className="mt-9 max-w-[35rem] text-[15px] leading-[1.8] text-muted sm:text-[16px]"
           >
             {hero.intro}
           </motion.p>
@@ -97,12 +107,13 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 1.25, ease: EASE }}
-            className="mt-16 grid max-w-2xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line/70 backdrop-blur-md sm:grid-cols-4"
+            className="mystic-stats mt-16 grid max-w-2xl grid-cols-2 gap-px overflow-hidden border border-line/80 bg-line/70 backdrop-blur-xl sm:grid-cols-4"
           >
             {hero.stats.map((s) => (
-              <div key={s.label} className="bg-void/70 px-5 py-5">
+              <div key={s.label} className="group relative bg-void/55 px-5 py-5 transition-colors duration-500 hover:bg-panel/80">
                 <dt className="display text-3xl text-ink">{s.value}</dt>
                 <dd className="eyebrow mt-2 text-[10px]">{s.label}</dd>
+                <span className="absolute inset-x-5 bottom-0 h-px origin-left scale-x-0 bg-gradient-to-r from-accent to-transparent transition-transform duration-500 group-hover:scale-x-100" />
               </div>
             ))}
           </motion.dl>

@@ -28,11 +28,12 @@ export default function App() {
 
         <div className="layer-veins relative overflow-hidden">
           <Veins
-            className="absolute inset-0 opacity-60"
+            className="absolute inset-0 opacity-45"
             direction="down"
             height={2400}
+            hues={[212, 236, 264, 284, 44]}
           />
-          <div className="pointer-events-none absolute inset-0 bg-[rgba(5,4,24,0.68)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_18%,rgba(112,104,205,0.15),transparent_32%),rgba(5,4,20,0.73)]" />
           <div className="relative">
             <Work />
             <Capabilities />

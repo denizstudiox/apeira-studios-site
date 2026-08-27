@@ -28,7 +28,7 @@ function Card({ item, index }) {
       <div
         ref={ref}
         onMouseMove={onMove}
-        className={`plate group relative h-full overflow-hidden rounded-2xl border border-line bg-panel/70 p-8 transition-colors duration-500 hover:border-accent-dim/60 sm:p-10 ${
+        className={`plate mystic-card group relative h-full overflow-hidden border border-line/90 bg-panel/55 p-8 backdrop-blur-sm transition-colors duration-700 hover:border-accent-dim/70 sm:p-10 ${
           item.wip ? "border-dashed" : ""
         }`}
       >
@@ -41,6 +41,9 @@ function Card({ item, index }) {
               "radial-gradient(420px circle at var(--mx) var(--my), currentColor, transparent 65%)",
           }}
         />
+
+        <span aria-hidden="true" className="pointer-events-none absolute -right-20 -top-20 size-48 rounded-full border border-accent/10 transition-transform duration-1000 group-hover:scale-110" />
+        <span aria-hidden="true" className="pointer-events-none absolute -right-10 -top-10 size-28 rounded-full border border-gold/10" />
 
         {/* The whole card is clickable; the Source link below still wins. */}
         {isLink && (
@@ -58,11 +61,11 @@ function Card({ item, index }) {
             <span className="display text-[16px] leading-none text-accent-dim">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <span className="rounded-full border border-line px-3 py-1 text-[11px] tracking-tight text-muted">
+            <span className="border border-line px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-muted">
               {item.tag}
             </span>
             {item.credit && (
-              <span className="rounded-full border border-accent-dim/40 bg-accent/5 px-3 py-1 text-[11px] tracking-tight text-accent-dim">
+              <span className="border border-accent-dim/40 bg-accent/5 px-3 py-1 text-[10px] uppercase tracking-[0.12em] text-accent-dim">
                 {item.credit}
               </span>
             )}
@@ -98,7 +101,7 @@ function Card({ item, index }) {
           {item.stack.map((s) => (
             <span
               key={s}
-              className="rounded-md border border-line/80 bg-void/50 px-2.5 py-1 font-mono text-[11px] text-faint transition-colors duration-500 group-hover:text-muted"
+              className="border border-line/80 bg-void/45 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-faint transition-colors duration-500 group-hover:border-accent-dim/40 group-hover:text-muted"
             >
               {s}
             </span>

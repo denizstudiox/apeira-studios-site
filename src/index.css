@@ -1,22 +1,23 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ *
- * Design tokens — "the blue flame"
+ * Design tokens — "the dreaming threshold"
  * ------------------------------------------------------------------ */
 @theme {
-  --color-void: #04050b;
-  --color-ground: #06070e;
-  --color-panel: #0b0d18;
-  --color-line: #171b2b;
-  --color-ink: #e9edf7;
-  --color-muted: #8590a8;
-  --color-faint: #545e78;
+  --color-void: #03040a;
+  --color-ground: #070611;
+  --color-panel: #0d0b1a;
+  --color-line: #28223b;
+  --color-ink: #f3f0ff;
+  --color-muted: #a39cb7;
+  --color-faint: #706982;
 
   /* Flame: deep at the base, white-hot at the core */
-  --color-accent: #58b6ff;
-  --color-accent-core: #c7f0ff;
-  --color-accent-dim: #3a6ea8;
-  --color-accent-deep: #2340c8;
+  --color-accent: #aab7ff;
+  --color-accent-core: #f4f0ff;
+  --color-accent-dim: #746cc8;
+  --color-accent-deep: #47399c;
+  --color-gold: #c9a96a;
 
   --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-wordmark: "Cinzel", ui-serif, Georgia, serif;
@@ -37,7 +38,10 @@
   }
 
   body {
-    background-color: var(--color-ground);
+    background:
+      radial-gradient(circle at 78% 8%, rgba(101, 92, 184, 0.12), transparent 28rem),
+      radial-gradient(circle at 12% 42%, rgba(43, 86, 143, 0.08), transparent 34rem),
+      var(--color-ground);
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-weight: 300;
@@ -98,33 +102,33 @@
  * colour props needed.
  * ------------------------------------------------------------------ */
 .layer-apeiron {
-  --color-accent: #58b6ff;
-  --color-accent-core: #c7f0ff;
-  --color-accent-dim: #3a6ea8;
-  --color-accent-deep: #2340c8;
+  --color-accent: #9fb6ff;
+  --color-accent-core: #e9f2ff;
+  --color-accent-dim: #586fc1;
+  --color-accent-deep: #31438f;
 }
 
 .layer-veins {
   --color-void: #050418;
-  --color-accent: #b98cff;
-  --color-accent-core: #ecdcff;
-  --color-accent-dim: #7c5cb8;
-  --color-accent-deep: #5b2fb0;
-  --color-line: #211a35;
-  --color-panel: #120c1e;
-  --color-muted: #9a92ad;
+  --color-accent: #c0a2ff;
+  --color-accent-core: #f0e8ff;
+  --color-accent-dim: #8269bd;
+  --color-accent-deep: #563692;
+  --color-line: #2b2240;
+  --color-panel: #120d20;
+  --color-muted: #aaa0bb;
 }
 
 .layer-surface {
-  --color-void: #03110a;
-  --color-accent: #7fd99a;
-  --color-accent-core: #d9f7e3;
-  --color-accent-dim: #4c8f66;
-  --color-accent-deep: #1e6b41;
-  --color-line: #16281d;
-  --color-panel: #0b1710;
-  --color-muted: #8fa89a;
-  --color-faint: #5f7a6a;
+  --color-void: #050611;
+  --color-accent: #b5c0ff;
+  --color-accent-core: #f8f4ff;
+  --color-accent-dim: #746cc8;
+  --color-accent-deep: #4c3da8;
+  --color-line: #29243f;
+  --color-panel: #100d1e;
+  --color-muted: #aca5bd;
+  --color-faint: #766e8a;
 }
 
 /* Film grain */
@@ -134,7 +138,7 @@
   inset: -50%;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.045;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain 8s steps(10) infinite;
 }
@@ -166,8 +170,8 @@
 /* Faint blueprint grid */
 .grid-bg {
   background-image:
-    linear-gradient(to right, rgba(120, 160, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(120, 160, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(170, 183, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(170, 183, 255, 0.03) 1px, transparent 1px);
   background-size: 72px 72px;
 }
 
@@ -176,10 +180,111 @@
 }
 
 .text-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #e6eeff 42%, #6f7c9c 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #eeeaff 45%, #8f88ab 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* ------------------------------------------------------------------ *
+ * Dream threshold — cinematic depth without compromising legibility
+ * ------------------------------------------------------------------ */
+.dream-hero-image {
+  object-position: 63% center;
+  filter: saturate(0.92) contrast(1.04) brightness(0.86);
+  animation: dream-breathe 18s ease-in-out infinite alternate;
+  transform-origin: 72% 48%;
+}
+
+.dream-vignette {
+  background:
+    linear-gradient(90deg, rgba(3, 4, 10, 0.98) 0%, rgba(5, 5, 15, 0.92) 23%, rgba(5, 5, 15, 0.52) 48%, rgba(4, 4, 12, 0.12) 76%),
+    linear-gradient(180deg, rgba(4, 4, 12, 0.72) 0%, transparent 28%, transparent 64%, rgba(5, 5, 14, 0.84) 100%),
+    radial-gradient(circle at 72% 48%, transparent 0%, transparent 22%, rgba(2, 3, 9, 0.34) 68%, rgba(2, 3, 9, 0.72) 100%);
+}
+
+.dream-aurora {
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(ellipse at 74% 50%, rgba(173, 183, 255, 0.14), transparent 23%),
+    linear-gradient(112deg, transparent 42%, rgba(115, 102, 214, 0.08) 52%, transparent 62%);
+  animation: aurora-drift 13s ease-in-out infinite alternate;
+}
+
+.dream-orbit {
+  border: 1px solid rgba(190, 182, 255, 0.13);
+  border-radius: 999px;
+  box-shadow:
+    inset 0 0 70px rgba(120, 111, 224, 0.05),
+    0 0 70px rgba(120, 111, 224, 0.04);
+  animation: orbit-breathe 9s ease-in-out infinite;
+}
+.dream-orbit::before,
+.dream-orbit::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  border: 1px solid rgba(201, 169, 106, 0.12);
+}
+.dream-orbit::before { inset: 9%; }
+.dream-orbit::after {
+  inset: 22%;
+  border-color: rgba(204, 218, 255, 0.1);
+}
+
+.mystic-kicker,
+.mystic-stats,
+.mystic-card,
+.mystic-frame {
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.mystic-kicker {
+  box-shadow: inset 0 0 24px rgba(154, 143, 238, 0.04), 0 18px 50px rgba(1, 2, 8, 0.18);
+}
+
+.mystic-card {
+  background-image:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.018), transparent 30%),
+    radial-gradient(circle at 88% 2%, rgba(129, 116, 218, 0.08), transparent 28%);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
+}
+
+.mystic-card::before,
+.mystic-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 0 38%, rgba(190, 181, 255, 0.025) 48%, transparent 58%);
+  transform: translateX(-80%);
+  transition: transform 1.2s var(--ease-out-expo);
+}
+.mystic-card:hover::before,
+.mystic-frame:hover::before { transform: translateX(80%); }
+
+.mystic-frame { position: relative; }
+
+.sigil-number {
+  border: 1px solid color-mix(in srgb, var(--color-accent-dim) 55%, transparent);
+  transform: rotate(45deg);
+}
+.sigil-number > span { transform: rotate(-45deg); }
+
+@keyframes dream-breathe {
+  from { filter: saturate(0.88) contrast(1.04) brightness(0.82); }
+  to { filter: saturate(1.03) contrast(1.06) brightness(0.91); }
+}
+
+@keyframes aurora-drift {
+  from { transform: translate3d(-1.5%, 0, 0) scale(1); opacity: 0.38; }
+  to { transform: translate3d(1.5%, -1%, 0) scale(1.035); opacity: 0.62; }
+}
+
+@keyframes orbit-breathe {
+  0%, 100% { transform: scale(0.98) rotate(-1deg); opacity: 0.45; }
+  50% { transform: scale(1.025) rotate(1deg); opacity: 0.8; }
 }
 
 /* Headline word lit by the layer accent */
@@ -238,6 +343,23 @@
 }
 .animate-float-slow { animation: float-slow 16s ease-in-out infinite; }
 
+.energy-inferno {
+  overflow: visible;
+  isolation: isolate;
+  filter: saturate(1.12) contrast(1.04);
+}
+
+.energy-inferno__field {
+  transform-origin: 50% 100%;
+  animation: inferno-breathe 13s ease-in-out infinite;
+}
+
+@keyframes inferno-breathe {
+  0%, 100% { opacity: 0.88; transform: scaleY(0.97) scaleX(1.01); }
+  45% { opacity: 1; transform: scaleY(1.035) scaleX(0.992); }
+  72% { opacity: 0.93; transform: scaleY(1.012) scaleX(1.006); }
+}
+
 /* Flame breathing — paired with the SVG turbulence */
 @keyframes flicker {
   0%, 100% { opacity: 0.92; transform: scaleY(1) scaleX(1); }
@@ -267,5 +389,26 @@
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .dream-hero-image { object-position: 68% center; }
+  .dream-vignette {
+    background:
+      linear-gradient(180deg, rgba(3, 4, 10, 0.86) 0%, rgba(4, 4, 12, 0.58) 40%, rgba(4, 4, 12, 0.58) 68%, rgba(5, 5, 14, 0.92) 100%),
+      linear-gradient(90deg, rgba(3, 4, 10, 0.8), rgba(4, 4, 12, 0.2));
+  }
+}
+
+@media (max-width: 639px) {
+  .dream-hero-image {
+    object-position: 72% center;
+    filter: saturate(0.86) contrast(1.05) brightness(0.68);
+  }
+  .dream-vignette {
+    background:
+      linear-gradient(180deg, rgba(3, 4, 10, 0.9) 0%, rgba(4, 4, 12, 0.58) 32%, rgba(4, 4, 12, 0.72) 68%, rgba(5, 5, 14, 0.98) 100%),
+      linear-gradient(90deg, rgba(3, 4, 10, 0.72), rgba(4, 4, 12, 0.2));
   }
 }

@@ -10,7 +10,7 @@ export default function Backdrop() {
   const background = useTransform(
     scrollYProgress,
     [0, 0.22, 0.5, 0.78, 1],
-    ["#071410", "#0a1a14", "#0b0722", "#07071a", "#04050b"]
+    ["#070611", "#090817", "#0c0820", "#080714", "#03040a"]
   );
 
   return (

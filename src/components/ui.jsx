@@ -68,7 +68,7 @@ export function Eyebrow({ numeral, children, className = "" }) {
           {numeral}
         </span>
       )}
-      <span className="h-px w-10 bg-gradient-to-r from-accent-dim to-transparent" />
+      <span className="h-px w-10 bg-gradient-to-r from-gold/80 via-accent-dim to-transparent" />
       <span className="eyebrow text-accent">{children}</span>
     </div>
   );
@@ -79,7 +79,7 @@ export function Ornament({ className = "" }) {
   return (
     <div className={`flex items-center justify-center gap-3 ${className}`}>
       <span className="h-px w-16 bg-gradient-to-r from-transparent to-line" />
-      <span className="size-1.5 rotate-45 border border-accent-dim" />
+      <span className="size-1.5 rotate-45 border border-gold/70 shadow-[0_0_14px_rgba(201,169,106,0.35)]" />
       <span className="h-px w-16 bg-gradient-to-l from-transparent to-line" />
     </div>
   );
@@ -103,8 +103,8 @@ export function Button({ href, children, variant = "primary", ...rest }) {
     "group relative inline-flex items-center gap-3 overflow-hidden rounded-full px-7 py-3.5 text-sm font-medium tracking-tight transition-colors duration-500";
   const styles =
     variant === "primary"
-      ? "bg-ink text-void shadow-[0_0_40px_-12px_rgba(88,182,255,0.55)]"
-      : "border border-line text-ink hover:border-accent-dim";
+      ? "border border-accent-core/30 bg-accent-core text-void shadow-[0_0_48px_-14px_rgba(164,177,255,0.75)]"
+      : "border border-line bg-void/15 text-ink backdrop-blur-sm hover:border-accent-dim";
 
   return (
     <a href={href} className={`${base} ${styles}`} {...rest}>

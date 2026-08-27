@@ -1,5 +1,5 @@
 import { contact, site } from "../content";
-import Flame, { Embers } from "./Flame";
+import EnergyInferno from "./EnergyInferno";
 import { ArrowUpRight, Eyebrow, MaskLine, Reveal, Section } from "./ui";
 
 const links = [
@@ -14,7 +14,8 @@ export default function Contact() {
   return (
     <Section id="contact" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="grid-bg absolute inset-0 opacity-40" />
+        <div className="grid-bg absolute inset-0 opacity-25" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_84%,rgba(88,118,255,0.16),transparent_34%),radial-gradient(circle_at_80%_20%,rgba(182,139,255,0.08),transparent_26%)]" />
       </div>
 
       <div className="grid gap-16 lg:grid-cols-12">
@@ -73,7 +74,7 @@ export default function Contact() {
           </Reveal>
 
           <Reveal delay={0.4}>
-            <div className="plate relative mt-10 rounded-2xl border border-line bg-panel/40 p-7">
+            <div className="plate mystic-card relative mt-10 border border-line bg-panel/35 p-7 backdrop-blur-sm">
               <p className="eyebrow">Currently</p>
               <p className="mt-4 text-[14.5px] leading-relaxed text-muted">
                 Building{" "}
@@ -86,14 +87,13 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* the apeiron, at the very foot of the page */}
-      <div className="relative mt-20 h-[260px] sm:h-[340px]">
-        <div className="pointer-events-none absolute bottom-[-110px] left-1/2 h-[420px] -translate-x-1/2 mix-blend-screen sm:h-[520px]">
-          <Flame className="h-full w-auto" />
-          <Embers count={9} />
+      {/* The apeiron: an energy field that separates into spectral colours. */}
+      <div className="relative left-1/2 mt-20 h-[330px] w-screen -translate-x-1/2 sm:h-[430px] lg:h-[520px]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[-76px] h-[430px] mix-blend-screen sm:h-[560px] lg:h-[650px]">
+          <EnergyInferno className="h-full w-full" />
         </div>
-        {/* sink the base of the flame into the dark */}
-        <div className="pointer-events-none absolute inset-x-0 -bottom-24 h-40 bg-gradient-to-t from-[#04050b] via-[#04050b]/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#060513] via-[#060513]/55 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 -bottom-24 h-36 bg-gradient-to-t from-[#03040d] via-[#03040d]/78 to-transparent" />
       </div>
     </Section>
   );
