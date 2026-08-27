@@ -61,7 +61,7 @@ export default function EnergyInferno({ className = "" }) {
             xChannelSelector="R"
             yChannelSelector="B"
           />
-          <feGaussianBlur stdDeviation="7" />
+          <feGaussianBlur stdDeviation="4" />
         </filter>
 
         <filter id="ei-glow" x="-30%" y="-80%" width="160%" height="230%">
@@ -158,7 +158,7 @@ export default function EnergyInferno({ className = "" }) {
           "M1188 676 C1140 610 1232 552 1186 478 C1150 420 1218 372 1244 314",
           "M1462 674 C1510 604 1428 562 1484 488 C1518 444 1490 396 1540 346",
         ].map((d, i) => (
-          <path key={d} d={d} strokeWidth={i % 2 ? 4 : 3} opacity={0.3 + (i % 3) * 0.12}>
+          <path key={d} d={d} strokeWidth={i % 2 ? 5 : 4} opacity={0.48 + (i % 3) * 0.12}>
             {!reduce && (
               <animate
                 attributeName="stroke-dasharray"
@@ -183,7 +183,6 @@ export default function EnergyInferno({ className = "" }) {
         </g>
       )}
 
-      <rect y="630" width={W} height="50" fill="#03040d" opacity="0.56" />
     </svg>
   );
 }

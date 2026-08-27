@@ -88,12 +88,11 @@ export default function Contact() {
       </div>
 
       {/* The apeiron: an energy field that separates into spectral colours. */}
-      <div className="relative left-1/2 mt-20 h-[330px] w-screen -translate-x-1/2 sm:h-[430px] lg:h-[520px]">
-        <div className="pointer-events-none absolute inset-x-0 bottom-[-76px] h-[430px] mix-blend-screen sm:h-[560px] lg:h-[650px]">
+      <div className="relative left-1/2 -mb-24 mt-20 h-[330px] w-screen -translate-x-1/2 sm:-mb-28 sm:h-[430px] lg:-mb-32 lg:h-[520px]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[430px] mix-blend-screen sm:h-[560px] lg:h-[650px]">
           <EnergyInferno className="h-full w-full" />
         </div>
         <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#060513] via-[#060513]/55 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 -bottom-24 h-36 bg-gradient-to-t from-[#03040d] via-[#03040d]/78 to-transparent" />
       </div>
     </Section>
   );
