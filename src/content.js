@@ -78,6 +78,20 @@ export const work = [
     stack: ["Fabric", "Forge", "NeoForge", "MC 1.20.1 – 26.2"],
     href: "https://www.curseforge.com/minecraft/mc-mods/immortal-snail-no-escape",
     linkLabel: "View on CurseForge",
+    details:
+      "Built as a persistent systemic threat rather than a scripted enemy. The snail first attempts legitimate navigation, then escalates into tunnelling, climbing, bridging and cross-dimensional pursuit when the world gets in its way.",
+    highlights: [
+      "Persistent hunter with natural-route-first AI",
+      "Terrain traversal, tunnelling and temporary scaffolding",
+      "Overworld, Nether and End pursuit",
+      "Snail Compass, advancements and Turkish localization",
+    ],
+    images: [
+      { src: "/projects/snail-01.webp", alt: "The immortal snail building a path across a desert" },
+      { src: "/projects/snail-02.webp", alt: "The immortal snail pursuing a player in Minecraft" },
+      { src: "/projects/snail-03.webp", alt: "The immortal snail pursuing a player underwater" },
+      { src: "/projects/snail-04.webp", alt: "The immortal snail crossing difficult terrain" },
+    ],
     featured: true,
   },
   {
@@ -89,6 +103,17 @@ export const work = [
     stack: ["Android", "Google Play", "Offline-first"],
     href: "https://denizstudiox.github.io/kubik/",
     linkLabel: "View project",
+    details:
+      "A focused Android companion for speedcubers. The interface is designed around fast repetition: generate a valid scramble, inspect, solve, record and immediately understand the session without an account or network connection.",
+    highlights: [
+      "Official-style scrambles across WCA events",
+      "Two-finger Stackmat interaction mode",
+      "ao5, ao12, ao50, ao100 and mo3 statistics",
+      "Offline-first and account-free",
+    ],
+    images: [
+      { src: "/projects/kubik-icon.webp", alt: "Kubik application cube mark", fit: "contain" },
+    ],
     featured: true,
   },
   {
@@ -101,6 +126,20 @@ export const work = [
     stack: ["Virtual Reality", "Environmental Education", "XR Lab"],
     href: "https://denizstudiox.github.io/eco-quest-vr/index.html?v=20260826",
     linkLabel: "View project",
+    details:
+      "A collaborative educational VR experience built around learning by doing. Players explore recognizable campus spaces, collect discarded objects and receive immediate feedback as they decide where each item belongs.",
+    highlights: [
+      "Explorable classroom, canteen and garden scenes",
+      "Hands-on object interaction and sorting",
+      "Immediate educational feedback",
+      "Created collaboratively by the MCBÜ XR Lab team",
+    ],
+    images: [
+      { src: "/projects/eco-og.webp", alt: "Eco Quest VR promotional scene" },
+      { src: "/projects/eco-canteen.webp", alt: "Eco Quest virtual canteen environment" },
+      { src: "/projects/eco-classroom.webp", alt: "Eco Quest virtual classroom environment" },
+      { src: "/projects/eco-garden.webp", alt: "Eco Quest virtual garden environment" },
+    ],
   },
   {
     title: "Sort It!",
@@ -112,6 +151,19 @@ export const work = [
     stack: ["Virtual Reality", "Two-player", "XR Lab"],
     href: "https://denizstudiox.github.io/sort-it-vr/index.html?v=20260826",
     linkLabel: "View project",
+    details:
+      "A collaborative VR challenge that turns recognition and sorting into a physical race. Sound, glow and controller vibration provide layered cues while players move objects into the correct destinations under time pressure.",
+    highlights: [
+      "Fast tactile VR sorting loop",
+      "Audio, light and haptic feedback",
+      "Competitive two-player structure",
+      "Created collaboratively by the MCBÜ XR Lab team",
+    ],
+    images: [
+      { src: "/projects/sort-og.webp", alt: "Sort It VR promotional artwork" },
+      { src: "/projects/sort-gameplay.webp", alt: "Sort It VR gameplay scene" },
+      { src: "/projects/sort-character.webp", alt: "Sort It VR character", fit: "contain" },
+    ],
   },
   {
     title: "Shorts Shield",
@@ -123,6 +175,17 @@ export const work = [
     href: "https://chromewebstore.google.com/detail/shorts-shield/nnhhbjdginblkbojacgppopedghflbdg",
     linkLabel: "Chrome Web Store",
     repo: "https://github.com/denizstudiox/Shorts-Shield",
+    details:
+      "A deliberately tiny browser extension for reclaiming attention. Its CSS-first architecture removes Shorts surfaces without continuous DOM work, while a lightweight guard redirects explicit Shorts URLs to the standard player.",
+    highlights: [
+      "Removes Shorts shelves, grids and navigation entries",
+      "CSS-first architecture with no layout thrashing",
+      "Instant enable and disable control",
+      "Desktop Chromium and Kiwi Browser support",
+    ],
+    images: [
+      { src: "/projects/shorts-icon.webp", alt: "Shorts Shield extension mark", fit: "contain" },
+    ],
   },
   {
     title: "RoFilter",
@@ -134,6 +197,18 @@ export const work = [
     href: "https://chromewebstore.google.com/detail/rofilter-game-quality-enh/mfbdhlnbimbigcfmmfonofkaccfpfion",
     linkLabel: "Chrome Web Store",
     repo: "https://github.com/denizstudiox/RoFilter",
+    details:
+      "A privacy-minded browser extension that gives players direct control over the Roblox discovery feed. Filters run locally and settings use Chrome sync; Apeira Studios does not receive browsing or usage data.",
+    highlights: [
+      "Minimum rating and active-player filters",
+      "Custom blocked-title keywords",
+      "Sponsored result removal",
+      "Manifest V3 with plain HTML, CSS and JavaScript",
+    ],
+    images: [
+      { src: "/projects/rofilter-store.webp", alt: "RoFilter Chrome Web Store presentation" },
+      { src: "/projects/rofilter-preview.webp", alt: "RoFilter extension settings interface", fit: "contain" },
+    ],
   },
   {
     title: "WTTG2 Organizer",
@@ -144,6 +219,18 @@ export const work = [
     stack: ["Python", "Flask-SocketIO", "PyWebView"],
     href: "https://github.com/denizstudiox/WTTG2Organizer",
     linkLabel: "View source",
+    details:
+      "A companion dashboard for Welcome to the Game II that consolidates targets, keys, Wi-Fi credentials and notes. The same state is synchronized in real time between its desktop window and a phone on the local network.",
+    highlights: [
+      "Availability tracking, sorting and instant search",
+      "Key vault, Wi-Fi manager and secure notes",
+      "Real-time phone and desktop synchronization",
+      "Dedicated PyWebView desktop wrapper",
+    ],
+    images: [
+      { src: "/projects/wttg-main.webp", alt: "WTTG2 Organizer main dashboard" },
+      { src: "/projects/wttg-help.webp", alt: "WTTG2 Organizer help and mobile sync panel" },
+    ],
   },
   {
     title: "dpi-easy",
@@ -154,6 +241,17 @@ export const work = [
     stack: ["PowerShell", "WinForms", "Windows"],
     href: "https://github.com/denizstudiox/dpi-easy",
     linkLabel: "View source",
+    details:
+      "A portable Windows control layer for GoodbyeDPI-Turkey. It tests multiple upstream profiles, reports real connection health and keeps process ownership explicit, with no installer and no hidden background service.",
+    highlights: [
+      "One-button start and stop control",
+      "Automatic selection across seven profiles",
+      "HTTPS health checks and visible process state",
+      "Portable Windows 10 and 11 package",
+    ],
+    images: [
+      { src: "/projects/dpi-banner.svg", alt: "DPI Easy project banner", fit: "contain" },
+    ],
   },
 ];
 
