@@ -40,7 +40,7 @@ export const hero = {
   secondaryCta: { label: "Start a project", href: "#contact" },
   // Character-sheet style plate
   stats: [
-    { value: "08", label: "Shipped works" },
+    { value: "09", label: "Shipped works" },
     { value: "03", label: "Marketplaces" },
     { value: "04", label: "Platforms" },
     { value: "∞", label: "Prototypes" },
@@ -187,6 +187,39 @@ export const work = [
       alt: "Sort It VR promotional poster",
       fit: "contain",
       tone: "#4ca9ff",
+    },
+  },
+  {
+    title: "Choose Your Mood",
+    tag: "Interactive Kiosk",
+    year: "2026",
+    summary:
+      "A touch-first mood wheel created for café kiosks. One tap sends 47 illustrated moods spinning, then lands on a full-screen result with responsive motion, sound and a deeply configurable visual system.",
+    stack: ["HTML", "SVG", "JavaScript", "Offline-first"],
+    href: "https://denizstudiox.github.io/choose-your-mood/",
+    linkLabel: "Open experience",
+    repo: "https://github.com/denizstudiox/choose-your-mood",
+    details:
+      "A zero-install interactive kiosk designed for touch displays in cafés. The wheel adapts its labels and faces to any mood list, stores appearance and behavior settings locally, and can run offline as a single self-contained HTML file.",
+    highlights: [
+      "47 illustrated moods with a dynamically sized wheel",
+      "Touch, keyboard and full-screen kiosk controls",
+      "Custom colors, timing, mood lists and sound settings",
+      "Offline single-file build with no external dependencies",
+    ],
+    images: [
+      {
+        src: "/projects/choose-your-mood-poster.webp",
+        alt: "Choose Your Mood interactive wheel",
+        fit: "contain",
+        tone: "#79ecff",
+      },
+    ],
+    poster: {
+      src: "/projects/choose-your-mood-poster.webp",
+      alt: "Choose Your Mood promotional poster",
+      fit: "contain",
+      tone: "#79ecff",
     },
   },
   {
