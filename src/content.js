@@ -92,6 +92,12 @@ export const work = [
       { src: "/projects/snail-03.webp", alt: "The immortal snail pursuing a player underwater" },
       { src: "/projects/snail-04.webp", alt: "The immortal snail crossing difficult terrain" },
     ],
+    poster: {
+      src: "/projects/snail-01.webp",
+      alt: "Immortal Snail: No Escape poster",
+      tone: "#d2a45e",
+      position: "center 58%",
+    },
     featured: true,
   },
   {
@@ -114,6 +120,12 @@ export const work = [
     images: [
       { src: "/projects/kubik-icon.webp", alt: "Kubik application cube mark", fit: "icon", tone: "#29d8b0" },
     ],
+    poster: {
+      src: "/projects/kubik-icon.webp",
+      alt: "Kubik poster",
+      fit: "icon",
+      tone: "#29d8b0",
+    },
     featured: true,
   },
   {
@@ -140,6 +152,12 @@ export const work = [
       { src: "/projects/eco-classroom.webp", alt: "Eco Quest virtual classroom environment" },
       { src: "/projects/eco-garden.webp", alt: "Eco Quest virtual garden environment" },
     ],
+    poster: {
+      src: "/projects/eco-og.webp",
+      alt: "Eco Quest VR promotional poster",
+      fit: "contain",
+      tone: "#6dde68",
+    },
   },
   {
     title: "Sort It!",
@@ -164,6 +182,12 @@ export const work = [
       { src: "/projects/sort-og.webp", alt: "Sort It VR promotional artwork", fit: "contain", tone: "#4ca9ff" },
       { src: "/projects/sort-character.webp", alt: "Sort It VR character", fit: "icon", tone: "#4ca9ff" },
     ],
+    poster: {
+      src: "/projects/sort-og.webp",
+      alt: "Sort It VR promotional poster",
+      fit: "contain",
+      tone: "#4ca9ff",
+    },
   },
   {
     title: "Shorts Shield",
@@ -186,6 +210,12 @@ export const work = [
     images: [
       { src: "/projects/shorts-icon.webp", alt: "Shorts Shield extension mark", fit: "icon", tone: "#ff5f57" },
     ],
+    poster: {
+      src: "/projects/shorts-icon.webp",
+      alt: "Shorts Shield poster",
+      fit: "icon",
+      tone: "#ff5f57",
+    },
   },
   {
     title: "RoFilter",
@@ -209,6 +239,12 @@ export const work = [
       { src: "/projects/rofilter-store.webp", alt: "RoFilter Chrome Web Store presentation", fit: "contain", tone: "#05d99d" },
       { src: "/projects/rofilter-preview.webp", alt: "RoFilter extension settings interface", fit: "contain", tone: "#05d99d" },
     ],
+    poster: {
+      src: "/projects/rofilter-store.webp",
+      alt: "RoFilter promotional poster",
+      fit: "contain",
+      tone: "#05d99d",
+    },
   },
   {
     title: "WTTG2 Organizer",
@@ -231,6 +267,12 @@ export const work = [
       { src: "/projects/wttg-main.webp", alt: "WTTG2 Organizer main dashboard", fit: "contain", tone: "#20f072" },
       { src: "/projects/wttg-help.webp", alt: "WTTG2 Organizer help and mobile sync panel", fit: "contain", tone: "#20f072" },
     ],
+    poster: {
+      src: "/projects/wttg-main.webp",
+      alt: "WTTG2 Organizer poster",
+      fit: "contain",
+      tone: "#20f072",
+    },
   },
   {
     title: "dpi-easy",
@@ -252,6 +294,12 @@ export const work = [
     images: [
       { src: "/projects/dpi-banner.svg", alt: "DPI Easy project banner", fit: "contain", tone: "#36a8ff" },
     ],
+    poster: {
+      src: "/projects/dpi-banner.svg",
+      alt: "DPI Easy poster",
+      fit: "contain",
+      tone: "#36a8ff",
+    },
   },
 ];
 

@@ -51,6 +51,67 @@ function ProjectImage({ image, className = "" }) {
   );
 }
 
+function ProjectPoster({ item, index, className = "" }) {
+  const poster = item.poster ?? item.images[0];
+  const mode = poster.fit ?? "cover";
+  const tone = poster.tone ?? "#766ee8";
+  const imageClass =
+    mode === "icon"
+      ? "object-contain p-[19%] sm:p-[17%]"
+      : mode === "contain"
+        ? "object-contain p-[8%] sm:p-[7%]"
+        : "object-cover";
+
+  return (
+    <div
+      className={`relative isolate overflow-hidden bg-[#070611] ${className}`}
+      style={{ "--project-tone": tone }}
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 opacity-45"
+        style={{
+          background: `radial-gradient(circle at 50% 40%, ${tone}88 0%, transparent 44%), linear-gradient(145deg, #090816 18%, ${tone}22 62%, #05040d 100%)`,
+        }}
+      />
+
+      <img
+        src={poster.src}
+        alt={poster.alt}
+        className={`h-full w-full transition duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${imageClass} ${
+          mode === "cover" ? "opacity-90" : "opacity-80 drop-shadow-[0_0_48px_var(--project-tone)]"
+        }`}
+        style={{ objectPosition: poster.position ?? "center" }}
+      />
+
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(4,3,12,0.12)_0%,rgba(4,3,12,0.04)_38%,rgba(4,3,12,0.94)_100%)]" />
+      <div className="pointer-events-none absolute inset-y-0 left-[8%] w-px bg-white/[0.07]" />
+      <div className="pointer-events-none absolute inset-y-0 right-[8%] w-px bg-white/[0.07]" />
+
+      <div className="pointer-events-none absolute inset-x-[8%] top-6 flex items-center justify-between font-mono text-[8px] uppercase tracking-[0.22em] text-white/60 sm:top-8 sm:text-[9px]">
+        <span>Apeira / {String(index + 1).padStart(2, "0")}</span>
+        <span>{item.year}</span>
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-[8%] bottom-7 sm:bottom-9">
+        <span
+          className="mb-3 block h-px w-12 sm:mb-4"
+          style={{ backgroundColor: tone, boxShadow: `0 0 18px ${tone}` }}
+        />
+        <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-white/55 sm:text-[9px]">
+          {item.tag} · Project archive
+        </p>
+        <h4 className="display mt-2 max-w-[11ch] text-[clamp(2rem,4.2vw,4rem)] leading-[0.88] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.8)]">
+          {item.title}
+        </h4>
+      </div>
+
+      <div className="pointer-events-none absolute inset-3 border border-white/[0.08] sm:inset-4" />
+      <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.08]" />
+    </div>
+  );
+}
+
 function ProjectCard({ item, index, onOpen }) {
   const reversed = index % 2 === 1;
 
@@ -70,11 +131,12 @@ function ProjectCard({ item, index, onOpen }) {
       />
 
       <div className="grid min-h-[520px] lg:h-[540px] lg:min-h-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(390px,0.92fr)]">
-        <ProjectImage
-          image={item.images[0]}
+        <ProjectPoster
+          item={item}
+          index={index}
           className={`h-[330px] sm:h-[430px] lg:h-full ${
             reversed ? "lg:order-2" : ""
-          } [&_img]:group-hover:scale-[1.035]`}
+          } [&_img]:group-hover:scale-[1.035] [&_img]:group-hover:brightness-110`}
         />
 
         <div
