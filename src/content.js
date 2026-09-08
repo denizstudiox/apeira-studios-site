@@ -112,7 +112,7 @@ export const work = [
       "Offline-first and account-free",
     ],
     images: [
-      { src: "/projects/kubik-icon.webp", alt: "Kubik application cube mark", fit: "contain" },
+      { src: "/projects/kubik-icon.webp", alt: "Kubik application cube mark", fit: "icon", tone: "#29d8b0" },
     ],
     featured: true,
   },
@@ -135,8 +135,8 @@ export const work = [
       "Created collaboratively by the MCBÜ XR Lab team",
     ],
     images: [
-      { src: "/projects/eco-og.webp", alt: "Eco Quest VR promotional scene" },
-      { src: "/projects/eco-canteen.webp", alt: "Eco Quest virtual canteen environment" },
+      { src: "/projects/eco-canteen.webp", alt: "Eco Quest virtual canteen environment", tone: "#6dde68" },
+      { src: "/projects/eco-og.webp", alt: "Eco Quest VR promotional scene", fit: "contain", tone: "#6dde68" },
       { src: "/projects/eco-classroom.webp", alt: "Eco Quest virtual classroom environment" },
       { src: "/projects/eco-garden.webp", alt: "Eco Quest virtual garden environment" },
     ],
@@ -160,9 +160,9 @@ export const work = [
       "Created collaboratively by the MCBÜ XR Lab team",
     ],
     images: [
-      { src: "/projects/sort-og.webp", alt: "Sort It VR promotional artwork" },
-      { src: "/projects/sort-gameplay.webp", alt: "Sort It VR gameplay scene" },
-      { src: "/projects/sort-character.webp", alt: "Sort It VR character", fit: "contain" },
+      { src: "/projects/sort-gameplay.webp", alt: "Sort It VR gameplay scene", tone: "#4ca9ff" },
+      { src: "/projects/sort-og.webp", alt: "Sort It VR promotional artwork", fit: "contain", tone: "#4ca9ff" },
+      { src: "/projects/sort-character.webp", alt: "Sort It VR character", fit: "icon", tone: "#4ca9ff" },
     ],
   },
   {
@@ -184,7 +184,7 @@ export const work = [
       "Desktop Chromium and Kiwi Browser support",
     ],
     images: [
-      { src: "/projects/shorts-icon.webp", alt: "Shorts Shield extension mark", fit: "contain" },
+      { src: "/projects/shorts-icon.webp", alt: "Shorts Shield extension mark", fit: "icon", tone: "#ff5f57" },
     ],
   },
   {
@@ -206,8 +206,8 @@ export const work = [
       "Manifest V3 with plain HTML, CSS and JavaScript",
     ],
     images: [
-      { src: "/projects/rofilter-store.webp", alt: "RoFilter Chrome Web Store presentation" },
-      { src: "/projects/rofilter-preview.webp", alt: "RoFilter extension settings interface", fit: "contain" },
+      { src: "/projects/rofilter-store.webp", alt: "RoFilter Chrome Web Store presentation", fit: "contain", tone: "#05d99d" },
+      { src: "/projects/rofilter-preview.webp", alt: "RoFilter extension settings interface", fit: "contain", tone: "#05d99d" },
     ],
   },
   {
@@ -228,8 +228,8 @@ export const work = [
       "Dedicated PyWebView desktop wrapper",
     ],
     images: [
-      { src: "/projects/wttg-main.webp", alt: "WTTG2 Organizer main dashboard" },
-      { src: "/projects/wttg-help.webp", alt: "WTTG2 Organizer help and mobile sync panel" },
+      { src: "/projects/wttg-main.webp", alt: "WTTG2 Organizer main dashboard", fit: "contain", tone: "#20f072" },
+      { src: "/projects/wttg-help.webp", alt: "WTTG2 Organizer help and mobile sync panel", fit: "contain", tone: "#20f072" },
     ],
   },
   {
@@ -250,7 +250,7 @@ export const work = [
       "Portable Windows 10 and 11 package",
     ],
     images: [
-      { src: "/projects/dpi-banner.svg", alt: "DPI Easy project banner", fit: "contain" },
+      { src: "/projects/dpi-banner.svg", alt: "DPI Easy project banner", fit: "contain", tone: "#36a8ff" },
     ],
   },
 ];

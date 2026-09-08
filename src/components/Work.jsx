@@ -5,20 +5,45 @@ import { work } from "../content";
 import { ArrowUpRight, EASE, Eyebrow, MaskLine, Reveal, Section } from "./ui";
 
 function ProjectImage({ image, className = "" }) {
-  const contain = image?.fit === "contain";
+  const mode = image?.fit ?? "cover";
+  const tone = image?.tone ?? "#766ee8";
+  const imageClass =
+    mode === "icon"
+      ? "object-contain p-[16%] drop-shadow-[0_0_52px_var(--project-tone)]"
+      : mode === "contain"
+        ? "object-contain p-[5%] drop-shadow-[0_0_34px_rgba(126,150,255,0.2)]"
+        : "object-cover";
 
   return (
     <div
-      className={`relative overflow-hidden bg-[radial-gradient(circle_at_50%_45%,rgba(116,108,200,0.22),transparent_46%),#080717] ${className}`}
+      className={`relative isolate overflow-hidden bg-[#080717] ${className}`}
+      style={{ "--project-tone": tone }}
     >
+      {mode !== "cover" && (
+        <>
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10 opacity-30"
+            style={{
+              background: `radial-gradient(circle at 50% 48%, ${tone} 0%, transparent 38%), linear-gradient(135deg, transparent 38%, ${tone}22 50%, transparent 62%)`,
+            }}
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[72%] -translate-x-1/2 -translate-y-1/2 rotate-12 rounded-full border opacity-20"
+            style={{ borderColor: tone }}
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[48%] -translate-x-1/2 -translate-y-1/2 -rotate-12 rounded-full border opacity-15"
+            style={{ borderColor: tone }}
+          />
+        </>
+      )}
       <img
         src={image.src}
         alt={image.alt}
-        className={`h-full w-full transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          contain
-            ? "object-contain p-[12%] drop-shadow-[0_0_44px_rgba(126,150,255,0.34)]"
-            : "object-cover"
-        }`}
+        className={`h-full w-full transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${imageClass}`}
       />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#070613]/75 via-transparent to-[#8d85ff]/[0.06]" />
       <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]" />
@@ -35,9 +60,7 @@ function ProjectCard({ item, index, onOpen }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-90px" }}
       transition={{ duration: 0.95, ease: EASE }}
-      className={`group relative overflow-hidden border border-line/90 bg-panel/45 shadow-[0_34px_100px_-64px_rgba(80,96,255,0.72)] backdrop-blur-sm transition-colors duration-700 hover:border-accent-dim/70 ${
-        reversed ? "lg:ml-12" : "lg:mr-12"
-      }`}
+      className="group relative overflow-hidden border border-line/90 bg-panel/45 shadow-[0_34px_100px_-64px_rgba(80,96,255,0.72)] backdrop-blur-sm transition-colors duration-700 hover:border-accent-dim/70"
     >
       <button
         type="button"
@@ -46,7 +69,7 @@ function ProjectCard({ item, index, onOpen }) {
         className="absolute inset-0 z-10 cursor-pointer"
       />
 
-      <div className="grid min-h-[520px] lg:grid-cols-[minmax(0,1.2fr)_minmax(330px,0.8fr)]">
+      <div className="grid min-h-[520px] lg:h-[540px] lg:min-h-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(390px,0.92fr)]">
         <ProjectImage
           image={item.images[0]}
           className={`h-[330px] sm:h-[430px] lg:h-full ${
@@ -55,7 +78,7 @@ function ProjectCard({ item, index, onOpen }) {
         />
 
         <div
-          className={`pointer-events-none relative flex min-h-[330px] flex-col justify-between p-7 sm:p-10 lg:p-12 ${
+          className={`pointer-events-none relative flex min-h-[330px] flex-col justify-between p-7 sm:p-10 ${
             reversed ? "lg:order-1" : ""
           }`}
         >
@@ -75,10 +98,10 @@ function ProjectCard({ item, index, onOpen }) {
             </div>
 
             <p className="eyebrow mt-10">{item.year}</p>
-            <h3 className="display mt-4 text-[clamp(2rem,4vw,3.65rem)] leading-[0.98] text-ink">
+            <h3 className="display mt-4 text-[clamp(2rem,3.5vw,3.25rem)] leading-[0.98] text-ink">
               {item.title}
             </h3>
-            <p className="mt-6 line-clamp-4 text-[14px] leading-[1.8] text-muted">
+            <p className="mt-6 line-clamp-4 text-[14px] leading-[1.8] text-muted lg:line-clamp-3">
               {item.summary}
             </p>
           </div>
@@ -205,7 +228,7 @@ function ProjectModal({ selection, onClose }) {
                         <img
                           src={image.src}
                           alt=""
-                          className={`h-full w-full ${image.fit === "contain" ? "object-contain p-2" : "object-cover"}`}
+                          className={`h-full w-full ${image.fit === "contain" || image.fit === "icon" ? "object-contain p-2" : "object-cover"}`}
                         />
                       </button>
                     ))}
