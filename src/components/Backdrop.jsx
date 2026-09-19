@@ -1,23 +1,19 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-
 /**
  * The page descends: the living surface at the top, the vein network beneath
  * it, the apeiron at the very bottom. The background is that descent — the
  * world is stated here and in the artwork, never in words.
  */
 export default function Backdrop() {
-  const { scrollYProgress } = useScroll();
-  const background = useTransform(
-    scrollYProgress,
-    [0, 0.22, 0.5, 0.78, 1],
-    ["#070611", "#090817", "#0c0820", "#080714", "#03040a"]
-  );
-
+  // A static gradient over the full page height rather than a colour driven
+  // by scroll: it scrolls with the content, so nothing repaints per frame.
   return (
-    <motion.div
+    <div
       aria-hidden="true"
-      className="fixed inset-0 -z-50"
-      style={{ background }}
+      className="absolute inset-0 -z-50"
+      style={{
+        background:
+          "linear-gradient(to bottom, #070611 0%, #090817 22%, #0c0820 50%, #080714 78%, #03040a 100%)",
+      }}
     />
   );
 }

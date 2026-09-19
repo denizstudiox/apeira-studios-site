@@ -36,7 +36,7 @@ export default function Nav() {
         transition={{ duration: 1, delay: 0.2, ease: EASE }}
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "border-b border-line/80 bg-ground/72 shadow-[0_18px_55px_-38px_rgba(126,116,255,0.65)] backdrop-blur-2xl"
+            ? "border-b border-line/80 bg-ground/80 shadow-[0_18px_55px_-38px_rgba(126,116,255,0.65)] backdrop-blur-md"
             : "border-b border-transparent"
         }`}
       >

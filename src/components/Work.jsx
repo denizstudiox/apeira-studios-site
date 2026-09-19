@@ -121,7 +121,7 @@ function ProjectCard({ item, index, onOpen }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-90px" }}
       transition={{ duration: 0.95, ease: EASE }}
-      className="group relative overflow-hidden border border-line/90 bg-panel/45 shadow-[0_34px_100px_-64px_rgba(80,96,255,0.72)] backdrop-blur-sm transition-colors duration-700 hover:border-accent-dim/70"
+      className="group relative overflow-hidden border border-line/90 bg-panel/70 shadow-[0_34px_100px_-64px_rgba(80,96,255,0.72)] transition-colors duration-700 hover:border-accent-dim/70"
     >
       <button
         type="button"

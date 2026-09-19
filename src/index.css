@@ -191,8 +191,7 @@
  * ------------------------------------------------------------------ */
 .dream-hero-image {
   object-position: 63% center;
-  filter: saturate(0.92) contrast(1.04) brightness(0.86);
-  animation: dream-breathe 18s ease-in-out infinite alternate;
+  filter: saturate(0.95) contrast(1.05) brightness(0.86);
   transform-origin: 72% 48%;
 }
 
@@ -272,11 +271,6 @@
 }
 .sigil-number > span { transform: rotate(-45deg); }
 
-@keyframes dream-breathe {
-  from { filter: saturate(0.88) contrast(1.04) brightness(0.82); }
-  to { filter: saturate(1.03) contrast(1.06) brightness(0.91); }
-}
-
 @keyframes aurora-drift {
   from { transform: translate3d(-1.5%, 0, 0) scale(1); opacity: 0.38; }
   to { transform: translate3d(1.5%, -1%, 0) scale(1.035); opacity: 0.62; }
@@ -343,15 +337,50 @@
 }
 .animate-float-slow { animation: float-slow 16s ease-in-out infinite; }
 
+/* CSS rather than a JS loop, so the compositor runs it off the main thread */
+@keyframes scroll-cue {
+  from { transform: translateY(-16px); }
+  to { transform: translateY(48px); }
+}
+.animate-scroll-cue { animation: scroll-cue 2s ease-in-out infinite; }
+
+/*
+ * Every animation below runs on transform or opacity only, so the browser
+ * moves and fades already-painted layers instead of repainting the SVG
+ * filters underneath them.
+ */
 .energy-inferno {
   overflow: visible;
   isolation: isolate;
-  filter: saturate(1.12) contrast(1.04);
 }
 
 .energy-inferno__field {
   transform-origin: 50% 100%;
   animation: inferno-breathe 13s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.energy-inferno__tint {
+  opacity: 0;
+  animation: inferno-tint var(--dur, 30s) ease-in-out var(--delay, 0s) infinite alternate;
+  will-change: opacity;
+}
+
+@keyframes inferno-tint {
+  0%, 25% { opacity: 0; }
+  75%, 100% { opacity: 1; }
+}
+
+.energy-inferno__mote {
+  opacity: 0;
+  animation: inferno-mote var(--dur, 12s) linear var(--delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes inferno-mote {
+  0% { transform: translate3d(0, 80px, 0); opacity: 0; }
+  50% { opacity: 0.9; }
+  100% { transform: translate3d(var(--drift, 0px), -180px, 0); opacity: 0; }
 }
 
 @keyframes inferno-breathe {

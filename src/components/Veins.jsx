@@ -1,5 +1,4 @@
-import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 /**
  * Hues the trunks start from — the veins are deliberately not one colour.
@@ -120,15 +119,14 @@ function buildVeins(seed, W, H, hues) {
 }
 
 /**
- * The second layer, rendered as a living network sized to its container.
+ * The second layer, rendered as a network sized to its container.
  *
- * A scroll-driven mask uncovers the network in the reading direction, so the
- * veins appear to grow as you travel through the layer.
+ * Deliberately static: the network is several screens tall and blurred, so
+ * anything that repaints it while scrolling (a moving mask, say) costs far
+ * more than it gives. Painted once, it scrolls for free.
  */
-export default function Veins({ className = "", seed = 11, hues = HUES, direction = "up" }) {
+export default function Veins({ className = "", seed = 11, hues = HUES }) {
   const ref = useRef(null);
-  const reduce = useReducedMotion();
-  const glowId = `vein-glow-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
   const [size, setSize] = useState(null);
 
   // Regenerate only when the box changes meaningfully, not on every pixel.
@@ -150,27 +148,9 @@ export default function Veins({ className = "", seed = 11, hues = HUES, directio
     [seed, size, hues]
   );
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  // The network uncovers itself in the direction you are travelling: reading
-  // downward, the capillaries arrive first and the roots last.
-  const cut = useTransform(scrollYProgress, [0.02, 0.62], ["-8%", "118%"]);
-  const side = direction === "down" ? "bottom" : "top";
-  const maskImage = useTransform(
-    cut,
-    (v) =>
-      `linear-gradient(to ${side}, transparent 0%, #000 6%, #000 ${v}, transparent calc(${v} + 20%))`
-  );
-
   return (
     <div ref={ref} className={`pointer-events-none ${className}`}>
-      <motion.div
-        className="h-full w-full"
-        style={reduce ? undefined : { maskImage, WebkitMaskImage: maskImage }}
-      >
+      <div className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,#000_5%,#000_97%,transparent)]">
         {size && (
           <svg
             viewBox={`0 0 ${size.w} ${size.h}`}
@@ -178,16 +158,17 @@ export default function Veins({ className = "", seed = 11, hues = HUES, directio
             className="h-full w-full"
             aria-hidden="true"
           >
-            <defs>
-              <filter id={glowId} x="-10%" y="-2%" width="120%" height="104%">
-                <feGaussianBlur stdDeviation="9" />
-              </filter>
-            </defs>
-
-            {/* soft bloom around the thick roots and first branches */}
-            <g filter={`url(#${glowId})`} opacity="0.55">
+            {/* soft bloom around the thick roots and first branches, drawn as
+                wide translucent outlines — an SVG blur this tall would be far
+                too costly to rasterize */}
+            <g fill="none" strokeLinejoin="round">
               {veins.map((v, i) =>
-                v.gen < 2 ? <path key={`g${i}`} d={v.d} fill={`hsl(${v.hue} 95% 58%)`} /> : null
+                v.gen < 2 ? (
+                  <g key={`g${i}`} stroke={`hsl(${v.hue} 95% 58%)`}>
+                    <path d={v.d} strokeWidth="16" strokeOpacity="0.05" />
+                    <path d={v.d} strokeWidth="7" strokeOpacity="0.1" />
+                  </g>
+                ) : null
               )}
             </g>
 
@@ -204,7 +185,7 @@ export default function Veins({ className = "", seed = 11, hues = HUES, directio
             </g>
           </svg>
         )}
-      </motion.div>
+      </div>
     </div>
   );
 }

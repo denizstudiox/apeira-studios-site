@@ -30,7 +30,7 @@ export default function Hero() {
           aria-hidden="true"
           fetchPriority="high"
           decoding="async"
-          className="dream-hero-image absolute inset-0 h-full w-full object-cover"
+          className="dream-hero-image absolute inset-0 h-full w-full object-cover will-change-transform"
           style={{ y: imageY, scale: imageScale }}
         />
         <div className="dream-vignette pointer-events-none absolute inset-0" />
@@ -43,7 +43,7 @@ export default function Hero() {
       {/* ---- Content ---- */}
       <motion.div
         style={{ y, opacity }}
-        className="mx-auto w-full max-w-[1240px] px-6 pb-20 pt-32 sm:px-10 lg:px-14"
+        className="mx-auto w-full max-w-[1240px] px-6 pb-20 pt-32 will-change-transform sm:px-10 lg:px-14"
       >
         <div className="lg:max-w-[61%]">
           <motion.div
@@ -129,11 +129,7 @@ export default function Hero() {
       >
         <span className="eyebrow">Scroll</span>
         <span className="relative h-12 w-px overflow-hidden bg-line">
-          <motion.span
-            className="absolute inset-x-0 top-0 h-4 bg-accent"
-            animate={{ y: [-16, 48] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
+          <span className="animate-scroll-cue absolute inset-x-0 top-0 h-4 bg-accent" />
         </span>
       </motion.div>
     </section>
