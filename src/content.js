@@ -194,14 +194,15 @@ export const work = [
     tag: "Interactive Kiosk",
     year: "2026",
     summary:
-      "A touch-first mood wheel created for café kiosks. One tap sends 47 illustrated moods spinning, then lands on a full-screen result with responsive motion, sound and a deeply configurable visual system.",
+      "A touch-first mood wheel created for café kiosks. One tap sends 47 illustrated moods spinning, then lands on a full-screen result with responsive motion, sound and a deeply configurable visual system. Now live at BrewMood in Güzelbahçe, İzmir.",
     stack: ["HTML", "SVG", "JavaScript", "Offline-first"],
     href: "https://denizstudiox.github.io/choose-your-mood/",
     linkLabel: "Open experience",
     repo: "https://github.com/denizstudiox/choose-your-mood",
     details:
-      "A zero-install interactive kiosk designed for touch displays in cafés. The wheel adapts its labels and faces to any mood list, stores appearance and behavior settings locally, and can run offline as a single self-contained HTML file.",
+      "A zero-install interactive kiosk designed for touch displays in cafés. The wheel adapts its labels and faces to any mood list, stores appearance and behavior settings locally, and can run offline as a single self-contained HTML file. It is currently running on the kiosk at BrewMood in Güzelbahçe, İzmir.",
     highlights: [
+      "In daily use at BrewMood — Güzelbahçe, İzmir",
       "47 illustrated moods with a dynamically sized wheel",
       "Touch, keyboard and full-screen kiosk controls",
       "Custom colors, timing, mood lists and sound settings",
