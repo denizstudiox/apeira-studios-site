@@ -17,7 +17,7 @@ export const site = {
   // Optional — leave as "" to hide the link
   itch: "",
   x: "",
-  youtube: "",
+  youtube: "https://www.youtube.com/@ApeiraStudios",
 };
 
 export const nav = [
@@ -40,7 +40,7 @@ export const hero = {
   secondaryCta: { label: "Start a project", href: "#contact" },
   // Character-sheet style plate
   stats: [
-    { value: "09", label: "Shipped works" },
+    { value: "10", label: "Shipped works" },
     { value: "03", label: "Marketplaces" },
     { value: "04", label: "Platforms" },
     { value: "∞", label: "Prototypes" },
@@ -221,6 +221,36 @@ export const work = [
       alt: "Choose Your Mood promotional poster",
       fit: "contain",
       tone: "#79ecff",
+    },
+  },
+  {
+    title: "Unlimited Void",
+    tag: "VFX",
+    year: "2026",
+    summary:
+      "A real-time recreation of Gojo Satoru's Domain Expansion from Jujutsu Kaisen, built in Unreal Engine 5. Streaks of light tear open around the caster as the world collapses into an endless starfield.",
+    stack: ["Unreal Engine 5", "Real-time VFX"],
+    href: "https://youtu.be/vZo2oXLsJ0k",
+    linkLabel: "Watch on YouTube",
+    details:
+      "A fan-made VFX study exploring how an anime domain expansion can read in real time: the transition from the normal world into the void, radial light streaks and a deep-space backdrop, all rendered live in Unreal Engine 5.",
+    highlights: [
+      "Domain Expansion transition into an infinite void",
+      "Radial light streaks and a starfield backdrop",
+      "Rendered in real time in Unreal Engine 5",
+      "Non-commercial fan study of Jujutsu Kaisen",
+    ],
+    images: [
+      {
+        src: "/projects/unlimited-void.webp",
+        alt: "A character standing inside the Unlimited Void as light streaks burst outward",
+        tone: "#d24cff",
+      },
+    ],
+    poster: {
+      src: "/projects/unlimited-void.webp",
+      alt: "Unlimited Void Unreal Engine 5 VFX",
+      tone: "#d24cff",
     },
   },
   {
