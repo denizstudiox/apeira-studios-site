@@ -27,7 +27,7 @@ export default function App() {
         </div>
 
         <div className="layer-veins relative overflow-hidden">
-          <Veins className="absolute inset-0 opacity-60" />
+          <Veins className="absolute inset-0" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_18%,rgba(112,104,205,0.15),transparent_32%),rgba(5,4,20,0.55)]" />
           <div className="relative">
             <Work />

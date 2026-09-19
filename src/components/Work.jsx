@@ -117,8 +117,10 @@ function ProjectCard({ item, index, onOpen }) {
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 48 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      // a full `transform` (not `y`) lets the entrance run as a compositor
+      // animation instead of repainting the card every frame
+      initial={{ opacity: 0, transform: "translateY(48px)" }}
+      whileInView={{ opacity: 1, transform: "translateY(0px)" }}
       viewport={{ once: true, margin: "-90px" }}
       transition={{ duration: 0.95, ease: EASE }}
       className="group relative overflow-hidden border border-line/90 bg-panel/70 shadow-[0_34px_100px_-64px_rgba(80,96,255,0.72)] transition-colors duration-700 hover:border-accent-dim/70"

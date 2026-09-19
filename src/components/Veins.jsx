@@ -111,22 +111,77 @@ function buildVeins(seed, W, H, hues) {
 
     pts.push({ x: x + Math.sin(angle) * STEP * 0.6, y: y - Math.cos(angle) * STEP * 0.6, w: 0 });
     if (pts.length > 3) {
-      branches.push({ d: ribbon(pts), hue: b.hue, gen: b.gen, root: b.w });
+      let top = Infinity;
+      let bottom = -Infinity;
+      for (const pt of pts) {
+        top = Math.min(top, pt.y);
+        bottom = Math.max(bottom, pt.y);
+      }
+      branches.push({ d: ribbon(pts), hue: b.hue, gen: b.gen, top, bottom });
     }
   }
 
   return branches;
 }
 
+/** Height of each canvas strip, in CSS pixels. */
+const CHUNK = 1024;
+/** Overall strength of the layer, baked into the pixels. */
+const STRENGTH = 0.6;
+
+/** Paints the part of the network that falls inside one horizontal strip. */
+function paintStrip(canvas, veins, size, top, height, scale) {
+  canvas.width = Math.round(size.w * scale);
+  canvas.height = Math.round(height * scale);
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(scale, 0, 0, scale, 0, -top * scale);
+  ctx.lineJoin = "round";
+
+  const visible = veins.filter((v) => v.bottom + 12 >= top && v.top - 12 <= top + height);
+
+  // soft bloom around the thick roots and first branches
+  for (const v of visible) {
+    if (v.gen >= 2) continue;
+    ctx.strokeStyle = `hsl(${v.hue}, 95%, 58%)`;
+    ctx.globalAlpha = 0.05;
+    ctx.lineWidth = 16;
+    ctx.stroke(v.path);
+    ctx.globalAlpha = 0.1;
+    ctx.lineWidth = 7;
+    ctx.stroke(v.path);
+  }
+
+  // the veins themselves: deeper colour at the root, brighter at the tips
+  for (const v of visible) {
+    ctx.fillStyle = `hsl(${v.hue}, ${88 - v.gen * 4}%, ${Math.min(56 + v.gen * 5, 74)}%)`;
+    ctx.globalAlpha = Math.max(0.95 - v.gen * 0.15, 0.4);
+    ctx.fill(v.path);
+  }
+
+  // overall strength plus a soft fade at the very top and bottom of the layer
+  ctx.globalAlpha = 1;
+  ctx.globalCompositeOperation = "destination-in";
+  const fade = ctx.createLinearGradient(0, 0, 0, size.h);
+  fade.addColorStop(0, "rgba(0,0,0,0)");
+  fade.addColorStop(0.05, `rgba(0,0,0,${STRENGTH})`);
+  fade.addColorStop(0.97, `rgba(0,0,0,${STRENGTH})`);
+  fade.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = fade;
+  ctx.fillRect(0, top, size.w, height);
+}
+
 /**
  * The second layer, rendered as a network sized to its container.
  *
- * Deliberately static: the network is several screens tall and blurred, so
- * anything that repaints it while scrolling (a moving mask, say) costs far
- * more than it gives. Painted once, it scrolls for free.
+ * The network is generated as vectors but painted once into a stack of
+ * canvas strips. Scrolling past a finished bitmap costs nothing, whereas a
+ * several-screens-tall SVG of long overlapping paths gets re-rasterised
+ * tile by tile as it scrolls into view — which is what made the project
+ * list stutter.
  */
 export default function Veins({ className = "", seed = 11, hues = HUES }) {
   const ref = useRef(null);
+  const strips = useRef([]);
   const [size, setSize] = useState(null);
 
   // Regenerate only when the box changes meaningfully, not on every pixel.
@@ -148,44 +203,42 @@ export default function Veins({ className = "", seed = 11, hues = HUES }) {
     [seed, size, hues]
   );
 
-  return (
-    <div ref={ref} className={`pointer-events-none ${className}`}>
-      <div className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,#000_5%,#000_97%,transparent)]">
-        {size && (
-          <svg
-            viewBox={`0 0 ${size.w} ${size.h}`}
-            preserveAspectRatio="none"
-            className="h-full w-full"
-            aria-hidden="true"
-          >
-            {/* soft bloom around the thick roots and first branches, drawn as
-                wide translucent outlines — an SVG blur this tall would be far
-                too costly to rasterize */}
-            <g fill="none" strokeLinejoin="round">
-              {veins.map((v, i) =>
-                v.gen < 2 ? (
-                  <g key={`g${i}`} stroke={`hsl(${v.hue} 95% 58%)`}>
-                    <path d={v.d} strokeWidth="16" strokeOpacity="0.05" />
-                    <path d={v.d} strokeWidth="7" strokeOpacity="0.1" />
-                  </g>
-                ) : null
-              )}
-            </g>
+  const count = size ? Math.ceil(size.h / CHUNK) : 0;
 
-            {/* the veins themselves: deeper colour at the root, brighter at the tips */}
-            <g>
-              {veins.map((v, i) => (
-                <path
-                  key={i}
-                  d={v.d}
-                  fill={`hsl(${v.hue} ${88 - v.gen * 4}% ${Math.min(56 + v.gen * 5, 74)}%)`}
-                  opacity={Math.max(0.95 - v.gen * 0.15, 0.4)}
-                />
-              ))}
-            </g>
-          </svg>
-        )}
-      </div>
+  // Paint one strip per frame so the first paint never blocks the page.
+  useEffect(() => {
+    if (!veins.length) return;
+    const withPaths = veins.map((v) => ({ ...v, path: new Path2D(v.d) }));
+    // narrow screens are usually high-density phones: paint a little sharper there
+    const scale = size.w < 800 ? Math.min(window.devicePixelRatio || 1, 1.5) : 1;
+    let i = 0;
+    let frame;
+    const next = () => {
+      const canvas = strips.current[i];
+      if (canvas) {
+        const top = i * CHUNK;
+        paintStrip(canvas, withPaths, size, top, Math.min(CHUNK, size.h - top), scale);
+      }
+      if (++i < count) frame = requestAnimationFrame(next);
+    };
+    frame = requestAnimationFrame(next);
+    return () => cancelAnimationFrame(frame);
+  }, [veins, size, count]);
+
+  return (
+    <div ref={ref} className={`pointer-events-none ${className}`} aria-hidden="true">
+      {Array.from({ length: count }, (_, i) => {
+        const top = i * CHUNK;
+        const height = Math.min(CHUNK, size.h - top);
+        return (
+          <canvas
+            key={i}
+            ref={(el) => (strips.current[i] = el)}
+            className="absolute left-0 block w-full"
+            style={{ top: `${(top / size.h) * 100}%`, height: `${(height / size.h) * 100}%` }}
+          />
+        );
+      })}
     </div>
   );
 }

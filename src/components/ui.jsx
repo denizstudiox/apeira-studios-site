@@ -5,6 +5,12 @@ import { motion } from "framer-motion";
  * ------------------------------------------------------------------ */
 export const EASE = [0.16, 1, 0.3, 1];
 
+/*
+ * These animate a full `transform` string rather than `y`: framer-motion
+ * hands whole transforms (and opacity) to the browser as compositor
+ * animations, whereas `y` is stepped from JavaScript and repaints each frame.
+ */
+
 /** Fade + rise as the element scrolls into view. */
 export function Reveal({
   children,
@@ -18,8 +24,8 @@ export function Reveal({
   return (
     <M
       className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, transform: `translateY(${y}px)` }}
+      whileInView={{ opacity: 1, transform: "translateY(0px)" }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.9, delay, ease: EASE }}
       {...rest}
@@ -47,7 +53,7 @@ export function MaskLine({ children, delay = 0, className = "" }) {
     >
       <motion.span
         className={`block ${className}`}
-        variants={{ hidden: { y: "110%" }, show: { y: "0%" } }}
+        variants={{ hidden: { transform: "translateY(110%)" }, show: { transform: "translateY(0%)" } }}
         transition={{ duration: 1.1, delay, ease: EASE }}
       >
         {children}
