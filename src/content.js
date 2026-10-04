@@ -306,10 +306,10 @@ export const work = [
       "Desktop Chromium and Kiwi Browser support",
     ],
     images: [
-      { src: "/projects/shorts-icon.webp", alt: "Shorts Shield extension mark", fit: "icon", tone: "#ff5f57" },
+      { src: "/projects/shorts-icon-hq.webp", alt: "Shorts Shield extension mark", fit: "icon", tone: "#ff5f57" },
     ],
     poster: {
-      src: "/projects/shorts-icon.webp",
+      src: "/projects/shorts-icon-hq.webp",
       alt: "Shorts Shield poster",
       fit: "icon",
       tone: "#ff5f57",
