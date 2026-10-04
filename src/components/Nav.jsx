@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { site, nav } from "../content";
-import { Mark, EASE } from "./ui";
+import { StudioLogo, EASE } from "./ui";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -43,14 +43,10 @@ export default function Nav() {
         <div className="mx-auto flex h-[68px] w-full max-w-[1240px] items-center justify-between px-6 sm:px-10 lg:px-14">
           <a
             href="#top"
-            className="group flex items-center gap-3"
+            className="group flex shrink-0 items-center"
             aria-label={`${site.name} — home`}
           >
-            <Mark className="size-6 text-accent transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-[360deg]" />
-            <span className="wordmark text-[13px]">
-              {site.short}
-              <span className="text-faint"> Studios</span>
-            </span>
+            <StudioLogo />
           </a>
 
           <nav className="hidden items-center gap-9 md:flex">

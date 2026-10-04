@@ -195,7 +195,7 @@ function ProjectCard({ item, index, onOpen }) {
                   rel="noreferrer noopener"
                   className="pointer-events-auto relative z-20 inline-flex items-center gap-2 border-b border-line pb-1 text-[12px] text-faint transition-colors hover:border-accent hover:text-ink"
                 >
-                  Visit website
+                  {item.linkLabel ?? "Visit website"}
                   <ArrowUpRight className="size-3.5" />
                 </a>
               )}
@@ -362,7 +362,7 @@ function ProjectModal({ selection, onClose }) {
                       rel="noreferrer noopener"
                       className="inline-flex items-center gap-3 rounded-full border border-accent-core/30 bg-accent-core px-6 py-3 text-[13px] font-medium text-void shadow-[0_0_48px_-14px_rgba(164,177,255,0.75)] transition-transform hover:-translate-y-0.5"
                     >
-                      Visit project
+                      {item.linkLabel ?? "Visit project"}
                       <ArrowUpRight className="size-4" />
                     </a>
                   )}

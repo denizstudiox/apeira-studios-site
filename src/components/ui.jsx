@@ -168,15 +168,33 @@ export function ArrowUpRight({ className = "size-4" }) {
   );
 }
 
-/** Studio mark: an A drawn as a flame tip. */
+/** The final exported studio emblem, including its silver/lavender finish. */
 export function Mark({ className = "size-7" }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
-      <path
-        d="M32 9 C34 22 41 30 44 38 L50 54 H41.6 L32 30 L22.4 54 H14 L20 38 C23 30 30 22 32 9 Z"
-        fill="currentColor"
-      />
-      <rect x="23" y="42" width="18" height="3.2" rx="1.6" fill="currentColor" />
-    </svg>
+    <img
+      src={`${import.meta.env.BASE_URL}brand/apeira-silver-mark.webp`}
+      alt=""
+      aria-hidden="true"
+      width="600"
+      height="388"
+      className={`object-contain ${className}`}
+    />
+  );
+}
+
+/** The final horizontal logo exported for the user. */
+export function StudioLogo({ className = "", size = "compact" }) {
+  const large = size === "large";
+  return (
+    <img
+      src={`${import.meta.env.BASE_URL}brand/apeira-silver-logo.webp`}
+      alt=""
+      aria-hidden="true"
+      width="1600"
+      height="298"
+      decoding="async"
+      loading={large ? "lazy" : "eager"}
+      className={`h-auto object-contain ${large ? "w-[min(76vw,360px)]" : "w-[172px] sm:w-[186px]"} ${className}`}
+    />
   );
 }

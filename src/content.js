@@ -15,7 +15,7 @@ export const site = {
   github: "https://github.com/denizstudiox",
   linkedin: "https://www.linkedin.com/in/deniz-akkoyun/",
   // Optional — leave as "" to hide the link
-  itch: "",
+  itch: "https://apeira-studios.itch.io",
   x: "",
   youtube: "https://www.youtube.com/@ApeiraStudios",
 };
@@ -40,8 +40,8 @@ export const hero = {
   secondaryCta: { label: "Start a project", href: "#contact" },
   // Character-sheet style plate
   stats: [
-    { value: "10", label: "Shipped works" },
-    { value: "03", label: "Marketplaces" },
+    { value: "11", label: "Public projects" },
+    { value: "04", label: "Marketplaces" },
     { value: "04", label: "Platforms" },
     { value: "∞", label: "Prototypes" },
   ],
@@ -69,6 +69,40 @@ export const marquee = [
  *   wip       — renders as "In development", no link
  */
 export const work = [
+  {
+    title: "The Flawed Architect",
+    tag: "Psychological Horror",
+    year: "2026",
+    credit: "Free Windows playtest · In development",
+    summary:
+      "An ordinary evening becomes a world coming apart. A first-person psychological horror game built in Unreal Engine, available as a free Windows playtest on itch.io.",
+    stack: ["Unreal Engine", "Windows", "Single player", "itch.io"],
+    href: "https://apeira-studios.itch.io/apocalypse",
+    linkLabel: "View Windows playtest",
+    details:
+      "A first-person psychological horror experience about a familiar world slowly falling apart. The game is in development, with a free Windows playtest available on itch.io and a feedback form for bug reports and player impressions.",
+    highlights: [
+      "First-person psychological horror",
+      "Built in Unreal Engine",
+      "Free Windows playtest on itch.io",
+      "Single-player, English, keyboard and mouse",
+      "In development, with playtest feedback welcome",
+    ],
+    images: [
+      { src: "/projects/flawed-architect-01.webp", alt: "The Flawed Architect living room and emergency broadcast", tone: "#b95151" },
+      { src: "/projects/flawed-architect-02.webp", alt: "The Flawed Architect gameplay screenshot 2" },
+      { src: "/projects/flawed-architect-03.webp", alt: "The Flawed Architect gameplay screenshot 3" },
+      { src: "/projects/flawed-architect-04.webp", alt: "The Flawed Architect gameplay screenshot 4" },
+      { src: "/projects/flawed-architect-05.webp", alt: "The Flawed Architect gameplay screenshot 5" },
+    ],
+    poster: {
+      src: "/projects/flawed-architect-cover.webp",
+      alt: "The Flawed Architect official cover artwork",
+      fit: "contain",
+      tone: "#b95151",
+    },
+    featured: true,
+  },
   {
     title: "Immortal Snail: No Escape",
     tag: "Minecraft Mod",

@@ -1,21 +1,20 @@
 import { site } from "../content";
-import { Mark } from "./ui";
+import { Mark, StudioLogo } from "./ui";
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="relative border-t border-line">
-      {/* Oversized wordmark */}
-      <div className="pointer-events-none select-none overflow-hidden px-6 pt-14 sm:px-10 lg:px-14">
-        <p className="wordmark whitespace-nowrap bg-gradient-to-b from-[#1a2138] to-transparent bg-clip-text text-center text-[clamp(1.5rem,6.6vw,8rem)] text-transparent">
-          APEIRA STUDIOS
-        </p>
+      <div className="flex justify-center px-6 pb-10 pt-14 sm:px-10 lg:px-14">
+        <a href="#top" aria-label={`${site.name} — home`}>
+          <StudioLogo size="large" />
+        </a>
       </div>
 
       <div className="mx-auto flex w-full max-w-[1240px] flex-col gap-6 px-6 pb-10 pt-4 sm:flex-row sm:items-center sm:justify-between sm:px-10 lg:px-14">
         <div className="flex items-center gap-3">
-          <Mark className="size-5 text-accent-dim" />
+          <Mark className="size-5 shrink-0" />
           <p className="text-[13px] tracking-tight text-faint">
             © {year} {site.name}. All rights reserved.
           </p>
