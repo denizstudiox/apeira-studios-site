@@ -22,6 +22,13 @@ export const site = {
   youtube: "https://www.youtube.com/@ApeiraStudios",
 };
 
+export const studioDevelopment = {
+  current: "We use Claude Code in our development workflow for C++ gameplay, Unreal Engine editor automation and release testing. The Flawed Architect is a released game built with this workflow.",
+  planned: "For upcoming games, we plan to prototype Claude API-powered NPC conversations and dialogue localization. The prototype will keep responses within authored character and story boundaries, with server-side calls and usage limits.",
+  releaseAnnouncement: "https://apeira-studios.itch.io/the-flawed-architect/devlog/1693991/the-flawed-architect-is-out-now-free-full-release",
+  trailer: "https://www.youtube.com/watch?v=TLUjAXIUSps",
+};
+
 export const nav = [
   { label: "Work", href: "#work" },
   { label: "Disciplines", href: "#disciplines" },
@@ -45,7 +52,7 @@ export const hero = {
     { value: "11", label: "Public projects" },
     { value: "04", label: "Marketplaces" },
     { value: "04", label: "Platforms" },
-    { value: "∞", label: "Prototypes" },
+    { value: "2025", label: "Studio started" },
   ],
 };
 

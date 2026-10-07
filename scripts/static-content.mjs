@@ -1,5 +1,5 @@
 import { readFile, writeFile } from "node:fs/promises";
-import { site, work } from "../src/content.js";
+import { site, work, studioDevelopment } from "../src/content.js";
 
 const escape = (value) => String(value).replace(/[&<>"']/g, (char) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
@@ -24,14 +24,35 @@ const styles = `<style>
   .studio-static p { max-width: 760px; }
   .studio-static a { color: #c6b6ff; text-decoration: underline; text-underline-offset: 4px; }
   .studio-static li { margin: .4rem 0; }
+  .studio-static nav { display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; }
+  .studio-static .release { border: 1px solid #352a52; border-radius: 12px; padding: 1.5rem; background: #100b20; }
+  .studio-static .release h2 { margin-top: 0; }
+  .studio-static .release img { display: block; width: 100%; max-width: 560px; height: auto; border-radius: 6px; }
+  .studio-static .credit { color: #bbb3ca; font-size: .9rem; }
 </style>`;
+const releasedGame = work.find((project) => project.title === "The Flawed Architect");
+if (!releasedGame) throw new Error("Missing released game");
 const content = `<main class="studio-static">
   <h1>${escape(site.name)}</h1>
   <p>${escape(site.profile)}</p>
   <p>${escape(site.founder)} · ${escape(site.role)} · ${escape(site.location)}<br>Operating since ${escape(site.operatingSince)}</p>
   <p>${link(`mailto:${site.email}`, site.email)} · ${link(site.linkedin, "Founder on LinkedIn")} · ${link(site.github, "GitHub")}</p>
+  <nav aria-label="Studio page">${link("#released-game", "Released game")}${link("#development", "Development")}${link("#work", "All projects")}${link("#contact", "Contact")}</nav>
+  <section id="released-game" class="release" aria-labelledby="release-title">
+    <h2 id="release-title">The Flawed Architect</h2>
+    <p>Released · Windows · English · Single player · Free full game</p>
+    <img src="/projects/flawed-architect-cover.webp" alt="The Flawed Architect game artwork" width="630" height="500">
+    <p>${escape(releasedGame.summary)}</p>
+    <p>${link(releasedGame.href, "Download the game on itch.io")} · ${link(studioDevelopment.trailer, "Watch the gameplay trailer")}</p>
+    <p>${link(studioDevelopment.releaseAnnouncement, "Public release announcement — 6 October 2026")}</p>
+  </section>
+  <section id="development" aria-labelledby="development-title">
+    <h2 id="development-title">How we build</h2>
+    <h3>Current workflow</h3><p>${escape(studioDevelopment.current)}</p>
+    <h3>Next prototype</h3><p>${escape(studioDevelopment.planned)}</p>
+  </section>
   <h2 id="work">Projects &amp; releases</h2>
-  ${work.map((project) => `<article><h3>${escape(project.title)}</h3><p>${escape(project.summary)}</p><p>${[
+  ${work.map((project) => `<article><h3>${escape(project.title)}</h3><p>${escape(project.summary)}</p>${project.credit ? `<p class="credit">${escape(project.credit)}</p>` : ""}<p>${[
     project.href && link(project.href, project.linkLabel || "View project"),
     project.repo && link(project.repo, "Source code"),
   ].filter(Boolean).join(" · ")}</p></article>`).join("\n")}

@@ -1,4 +1,4 @@
-import { contact, site } from "../content";
+import { contact, site, studioDevelopment } from "../content";
 import EnergyInferno from "./EnergyInferno";
 import { ArrowUpRight, Eyebrow, MaskLine, Reveal, Section } from "./ui";
 
@@ -78,6 +78,9 @@ export default function Contact() {
               <p className="eyebrow">The studio</p>
               <p className="mt-4 text-[14.5px] leading-relaxed text-muted">
                 {site.profile}
+              </p>
+              <p className="mt-4 text-[14.5px] leading-relaxed text-muted">
+                {studioDevelopment.current}
               </p>
               <a href="/studio.html" className="mt-5 inline-flex items-center gap-2 text-sm text-ink hover:text-accent">
                 Studio &amp; releases <ArrowUpRight className="size-4" />
