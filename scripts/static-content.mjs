@@ -32,12 +32,22 @@ const styles = `<style>
 </style>`;
 const releasedGame = work.find((project) => project.title === "The Flawed Architect");
 if (!releasedGame) throw new Error("Missing released game");
+const brewai = work.find((project) => project.title === "Brewai — Moodi");
+if (!brewai) throw new Error("Missing Brewai project");
 const content = `<main class="studio-static">
   <h1>${escape(site.name)}</h1>
   <p>${escape(site.profile)}</p>
   <p>${escape(site.founder)} · ${escape(site.role)} · ${escape(site.location)}<br>Operating since ${escape(site.operatingSince)}</p>
   <p>${link(`mailto:${site.email}`, site.email)} · ${link(site.linkedin, "Founder on LinkedIn")} · ${link(site.github, "GitHub")}</p>
-  <nav aria-label="Studio page">${link("#released-game", "Released game")}${link("#development", "Development")}${link("#work", "All projects")}${link("#contact", "Contact")}</nav>
+  <nav aria-label="Studio page">${link("#brewai", "Brewai")}${link("#released-game", "Released game")}${link("#development", "Development")}${link("#work", "All projects")}${link("#contact", "Contact")}</nav>
+  <section id="brewai" class="release" aria-labelledby="brewai-title">
+    <h2 id="brewai-title">${escape(brewai.title)}</h2>
+    <p>${escape(brewai.credit)}</p>
+    <img src="/projects/brewai-moodi.png" alt="Moodi animated character interface — development screenshot" width="1440" height="900">
+    <p>${escape(brewai.summary)}</p>
+    <p>Guests interact with a playful character through Turkish voice conversation and animated expressions. The application includes server-side menu tools, a background advisor, answer review and a staff panel.</p>
+    <p class="credit">Character interface shown in development. Brewai does not currently use the Claude API.</p>
+  </section>
   <section id="released-game" class="release" aria-labelledby="release-title">
     <h2 id="release-title">The Flawed Architect</h2>
     <p>Released · Windows · English · Single player · Free full game</p>

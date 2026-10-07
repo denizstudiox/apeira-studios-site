@@ -13,7 +13,7 @@ export const site = {
   location: "Türkiye",
   email: "deniz@apeirastudios.me",
   operatingSince: "October 2025",
-  profile: "Apeira Studios is an independent game development studio in Türkiye, founded and run by Deniz Akkoyun. Operating since October 2025, the studio builds games, mods and software tools. Its released Unreal Engine 5 game, The Flawed Architect, is available free for Windows on itch.io.",
+  profile: "Apeira Studios is an independent studio in Türkiye, founded and run by Deniz Akkoyun. Operating since October 2025, the studio builds games, interactive AI characters and software tools. Its released Unreal Engine 5 game, The Flawed Architect, is available free for Windows on itch.io. Deniz also develops Brewai, an AI café character, in collaboration with a Brewmood branch.",
   github: "https://github.com/denizstudiox",
   linkedin: "https://www.linkedin.com/in/deniz-akkoyun/",
   // Optional — leave as "" to hide the link
@@ -44,12 +44,12 @@ export const hero = {
     [{ t: "mods and " }, { t: "tools.", glow: true }],
   ],
   intro:
-    "Apeira Studios is the independent game development studio of Deniz Akkoyun in Türkiye — shipping games, Minecraft mods, Android apps, browser extensions and the tooling around them.",
+    "Apeira Studios is the independent studio of Deniz Akkoyun in Türkiye — building games, AI café characters, Minecraft mods, Android apps, browser extensions and the tooling around them.",
   primaryCta: { label: "See the work", href: "#work" },
   secondaryCta: { label: "Start a project", href: "#contact" },
   // Character-sheet style plate
   stats: [
-    { value: "11", label: "Public projects" },
+    { value: "12", label: "Projects" },
     { value: "04", label: "Marketplaces" },
     { value: "04", label: "Platforms" },
     { value: "2025", label: "Studio started" },
@@ -102,6 +102,26 @@ export const workCategories = [
   },
 ];
 export const work = [
+  {
+    title: "Brewai — Moodi",
+    category: "interactive",
+    tag: "AI Café Character",
+    year: "2026",
+    credit: "Brewmood branch collaboration · Working prototype",
+    summary: "An animated, voice-enabled AI character for cafés. Guests can chat in Turkish and get recommendations grounded in the café’s approved menu. Developed by Deniz Akkoyun in collaboration with a Brewmood branch.",
+    stack: ["Conversational AI", "Voice", "Node.js", "Kiosk"],
+    href: "/studio.html#brewai",
+    linkLabel: "About Brewai",
+    details: "Moodi brings a playful character to a café screen, with expressive eyes, a voice-responsive mouth and natural conversation. Server-side menu tools support recommendations, while a background advisor and answer review help keep responses tied to the approved menu. A staff panel manages the menu and kiosk workflow. The current implementation uses other AI providers; it does not currently use the Claude API.",
+    highlights: [
+      "Developed in collaboration with a Brewmood branch",
+      "Turkish voice conversation and animated expressions",
+      "Recommendations grounded in the approved café menu",
+      "Staff panel and local kiosk workflow",
+    ],
+    images: [{ src: "/projects/brewai-moodi.png", alt: "Moodi animated character interface — development screenshot", tone: "#a8cbb0" }],
+    poster: { src: "/projects/brewai-moodi.png", alt: "Brewai Moodi character interface", fit: "contain", tone: "#a8cbb0" },
+  },
   {
     title: "The Flawed Architect",
     category: "games",
