@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { work } from "../content";
+import { work, workCategories } from "../content";
 import { ArrowUpRight, EASE, Eyebrow, MaskLine, Reveal, Section } from "./ui";
 
 function ProjectImage({ image, className = "" }) {
@@ -44,6 +44,7 @@ function ProjectImage({ image, className = "" }) {
         src={image.src}
         alt={image.alt}
         className={`h-full w-full transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${imageClass}`}
+        style={{ objectPosition: image.position ?? "center" }}
       />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#070613]/75 via-transparent to-[#8d85ff]/[0.06]" />
       <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]" />
@@ -51,167 +52,82 @@ function ProjectImage({ image, className = "" }) {
   );
 }
 
-function ProjectPoster({ item, index, className = "" }) {
-  const poster = item.poster ?? item.images[0];
-  const mode = poster.fit ?? "cover";
-  const tone = poster.tone ?? "#766ee8";
-  const imageClass =
-    mode === "icon"
-      ? "object-contain p-[19%] sm:p-[17%]"
-      : mode === "contain"
-        ? "object-contain p-[8%] sm:p-[7%]"
-        : "object-cover";
+function ProjectCard({ item, onOpen }) {
+  const cover = item.poster ?? item.images[0];
 
   return (
-    <div
-      className={`relative isolate overflow-hidden bg-[#070611] ${className}`}
-      style={{ "--project-tone": tone }}
-    >
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 opacity-45"
-        style={{
-          background: `radial-gradient(circle at 50% 40%, ${tone}88 0%, transparent 44%), linear-gradient(145deg, #090816 18%, ${tone}22 62%, #05040d 100%)`,
-        }}
-      />
-
-      <img
-        src={poster.src}
-        alt={poster.alt}
-        className={`h-full w-full transition duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${imageClass} ${
-          mode === "cover" ? "opacity-90" : "opacity-80 drop-shadow-[0_0_48px_var(--project-tone)]"
-        }`}
-        style={{ objectPosition: poster.position ?? "center" }}
-      />
-
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(4,3,12,0.12)_0%,rgba(4,3,12,0.04)_38%,rgba(4,3,12,0.94)_100%)]" />
-      <div className="pointer-events-none absolute inset-y-0 left-[8%] w-px bg-white/[0.07]" />
-      <div className="pointer-events-none absolute inset-y-0 right-[8%] w-px bg-white/[0.07]" />
-
-      <div className="pointer-events-none absolute inset-x-[8%] top-6 flex items-center justify-between font-mono text-[8px] uppercase tracking-[0.22em] text-white/60 sm:top-8 sm:text-[9px]">
-        <span>Apeira / {String(index + 1).padStart(2, "0")}</span>
-        <span>{item.year}</span>
-      </div>
-
-      <div className="pointer-events-none absolute inset-x-[8%] bottom-7 sm:bottom-9">
-        <span
-          className="mb-3 block h-px w-12 sm:mb-4"
-          style={{ backgroundColor: tone, boxShadow: `0 0 18px ${tone}` }}
-        />
-        <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-white/55 sm:text-[9px]">
-          {item.tag} · Project archive
-        </p>
-        <h4 className="display mt-2 max-w-[11ch] text-[clamp(2rem,4.2vw,4rem)] leading-[0.88] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.8)]">
-          {item.title}
-        </h4>
-      </div>
-
-      <div className="pointer-events-none absolute inset-3 border border-white/[0.08] sm:inset-4" />
-      <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.08]" />
-    </div>
-  );
-}
-
-function ProjectCard({ item, index, onOpen }) {
-  const reversed = index % 2 === 1;
-
-  return (
-    <motion.article
-      // a full `transform` (not `y`) lets the entrance run as a compositor
-      // animation instead of repainting the card every frame
-      initial={{ opacity: 0, transform: "translateY(48px)" }}
-      whileInView={{ opacity: 1, transform: "translateY(0px)" }}
-      viewport={{ once: true, margin: "-90px" }}
-      transition={{ duration: 0.95, ease: EASE }}
-      className="group relative overflow-hidden border border-line/90 bg-panel/70 shadow-[0_34px_100px_-64px_rgba(80,96,255,0.72)] transition-colors duration-700 hover:border-accent-dim/70"
-    >
+    <article className="group relative flex h-full flex-col overflow-hidden border border-line/90 bg-panel/70 shadow-[0_30px_80px_-60px_rgba(80,96,255,0.7)] transition-colors duration-500 hover:border-accent-dim/70">
       <button
         type="button"
-        onClick={() => onOpen(item, index)}
+        onClick={() => onOpen(item)}
         aria-label={`Open details for ${item.title}`}
         className="absolute inset-0 z-10 cursor-pointer"
       />
 
-      <div className="grid min-h-[520px] lg:h-[540px] lg:min-h-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(390px,0.92fr)]">
-        <ProjectPoster
-          item={item}
-          index={index}
-          className={`h-[330px] sm:h-[430px] lg:h-full ${
-            reversed ? "lg:order-2" : ""
-          } [&_img]:group-hover:scale-[1.035] [&_img]:group-hover:brightness-110`}
-        />
+      <ProjectImage
+        image={cover}
+        className="aspect-[16/10] border-b border-line/80 [&_img]:group-hover:scale-[1.035]"
+      />
 
-        <div
-          className={`pointer-events-none relative flex min-h-[330px] flex-col justify-between p-7 sm:p-10 ${
-            reversed ? "lg:order-1" : ""
-          }`}
-        >
-          <div>
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="display text-lg text-accent-dim">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className="border border-line px-3 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
-                {item.tag}
-              </span>
-              {item.credit && (
-                <span className="border border-accent-dim/35 bg-accent/5 px-3 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-accent-dim">
-                  {item.credit}
-                </span>
-              )}
-            </div>
+      <div className="pointer-events-none flex flex-1 flex-col p-6 sm:p-7">
+        <div className="flex items-center justify-between gap-3 font-mono text-[9px] uppercase tracking-[0.18em]">
+          <span className="text-accent-dim">{item.tag}</span>
+          <span className="text-faint">{item.year}</span>
+        </div>
 
-            <p className="eyebrow mt-10">{item.year}</p>
-            <h3 className="display mt-4 text-[clamp(2rem,3.5vw,3.25rem)] leading-[0.98] text-ink">
-              {item.title}
-            </h3>
-            <p className="mt-6 line-clamp-4 text-[14px] leading-[1.8] text-muted lg:line-clamp-3">
-              {item.summary}
-            </p>
+        <h4 className="display mt-4 text-[clamp(1.75rem,2.4vw,2.25rem)] leading-[1.02] text-ink">
+          {item.title}
+        </h4>
+
+        {item.credit && (
+          <p className="mt-3 font-mono text-[9px] uppercase tracking-[0.14em] text-accent">
+            {item.credit}
+          </p>
+        )}
+
+        <p className="mt-4 line-clamp-3 text-[14px] leading-[1.75] text-muted">
+          {item.summary}
+        </p>
+
+        <div className="mt-auto pt-6">
+          <div className="flex flex-wrap gap-2">
+            {item.stack.slice(0, 3).map((technology) => (
+              <span
+                key={technology}
+                className="border border-line/80 bg-void/35 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] text-faint"
+              >
+                {technology}
+              </span>
+            ))}
           </div>
 
-          <div className="mt-10">
-            <div className="flex flex-wrap gap-2">
-              {item.stack.slice(0, 3).map((technology) => (
-                <span
-                  key={technology}
-                  className="border border-line/80 bg-void/35 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] text-faint"
-                >
-                  {technology}
-                </span>
-              ))}
-            </div>
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-line/70 pt-5">
+            <span className="inline-flex items-center gap-2 text-[13px] text-accent transition-colors group-hover:text-accent-core">
+              Details
+              <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+            </span>
 
-            <div className="mt-8 flex flex-wrap items-center gap-5">
-              <span className="inline-flex items-center gap-2 text-[13px] text-accent transition-colors group-hover:text-accent-core">
-                Explore project
-                <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
-              </span>
-
-              {item.href && !item.wip && (
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="pointer-events-auto relative z-20 inline-flex items-center gap-2 border-b border-line pb-1 text-[12px] text-faint transition-colors hover:border-accent hover:text-ink"
-                >
-                  {item.linkLabel ?? "Visit website"}
-                  <ArrowUpRight className="size-3.5" />
-                </a>
-              )}
-            </div>
+            {item.href && !item.wip && (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="pointer-events-auto relative z-20 inline-flex items-center gap-2 text-[12px] text-faint transition-colors hover:text-ink"
+              >
+                {item.linkLabel ?? "Visit website"}
+                <ArrowUpRight className="size-3.5" />
+              </a>
+            )}
           </div>
-
-          <span className="pointer-events-none absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-accent via-[#b169ff] to-transparent transition-all duration-1000 group-hover:w-full" />
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }
 
 function ProjectModal({ selection, onClose }) {
   const item = selection?.item;
-  const index = selection?.index ?? 0;
+  const category = workCategories.find((c) => c.id === item?.category);
   const [activeImage, setActiveImage] = useState(0);
 
   useEffect(() => {
@@ -302,9 +218,9 @@ function ProjectModal({ selection, onClose }) {
 
               <div className="relative flex flex-col p-7 sm:p-10 lg:p-14">
                 <div className="flex flex-wrap items-center gap-3 pr-12">
-                  <span className="display text-xl text-accent-dim">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                  {category && (
+                    <span className="eyebrow text-accent-dim">{category.label}</span>
+                  )}
                   <span className="border border-line px-3 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
                     {item.tag}
                   </span>
@@ -389,8 +305,113 @@ function ProjectModal({ selection, onClose }) {
   );
 }
 
+// Literal class names so Tailwind can see them
+const GRID_COLS = {
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-2 lg:grid-cols-3",
+};
+
+const groups = workCategories
+  .map((category) => ({
+    ...category,
+    items: work.filter((item) => item.category === category.id),
+  }))
+  .filter((group) => group.items.length > 0);
+
+function CategoryIndex({ active }) {
+  return (
+    <nav
+      aria-label="Project categories"
+      className="sticky top-[68px] z-30 -mx-6 border-y border-line/70 bg-ground/85 px-6 backdrop-blur-md sm:-mx-10 sm:px-10 lg:mx-0 lg:border-x lg:px-3"
+    >
+      <ul className="flex gap-1 overflow-x-auto py-3 [scrollbar-width:none]">
+        {groups.map((group, index) => {
+          const isActive = active === group.id;
+          return (
+            <li key={group.id} className="shrink-0">
+              <a
+                href={`#work-${group.id}`}
+                aria-current={isActive ? "true" : undefined}
+                className={`flex items-center gap-2.5 px-4 py-2 text-[13px] transition-colors duration-300 ${
+                  isActive ? "bg-accent/10 text-ink" : "text-muted hover:text-ink"
+                }`}
+              >
+                <span className="font-mono text-[10px] text-accent-dim">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                {group.label}
+                <span className="font-mono text-[10px] text-faint">
+                  {group.items.length}
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+}
+
+function CategorySection({ group, index, onOpen }) {
+  const cols = group.items.length % 3 === 0 ? 3 : 2;
+
+  return (
+    <section
+      id={`work-${group.id}`}
+      aria-labelledby={`work-${group.id}-title`}
+      className="scroll-mt-40"
+    >
+      <Reveal className="grid gap-5 border-b border-line pb-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-end lg:gap-10">
+        <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+          <span className="display text-2xl text-accent-dim">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3
+            id={`work-${group.id}-title`}
+            className="display text-[clamp(2rem,3.6vw,3rem)] leading-none text-ink"
+          >
+            {group.label}
+          </h3>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+            {group.items.length} {group.items.length === 1 ? "project" : "projects"}
+          </span>
+        </div>
+        <p className="text-[14px] leading-relaxed text-muted lg:text-right">
+          {group.blurb}
+        </p>
+      </Reveal>
+
+      <div className={`mt-8 grid gap-5 sm:mt-10 sm:gap-6 ${GRID_COLS[cols]}`}>
+        {group.items.map((item, itemIndex) => (
+          <Reveal key={item.title} delay={(itemIndex % cols) * 0.08} y={36}>
+            <ProjectCard item={item} onOpen={onOpen} />
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function Work() {
   const [selection, setSelection] = useState(null);
+  const [active, setActive] = useState(groups[0]?.id);
+
+  // Highlight whichever category is crossing the middle of the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id.replace("work-", ""));
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    groups.forEach((group) => {
+      const element = document.getElementById(`work-${group.id}`);
+      if (element) observer.observe(element);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -406,23 +427,26 @@ export default function Work() {
           </div>
           <Reveal delay={0.2}>
             <p className="max-w-sm text-sm leading-relaxed text-faint">
-              Enter each project for its story, features and gallery — or jump
-              straight to the live release.
+              {work.length} projects in {groups.length} groups. Open any of them
+              for the full story, features and gallery, or go straight to the
+              live release.
             </p>
           </Reveal>
         </div>
 
-        <div className="mt-16 space-y-8 sm:mt-20 sm:space-y-12">
-          {work.map((item, index) => (
-            <ProjectCard
-              key={item.title}
-              item={item}
-              index={index}
-              onOpen={(selectedItem, selectedIndex) =>
-                setSelection({ item: selectedItem, index: selectedIndex })
-              }
-            />
-          ))}
+        <div className="mt-14 sm:mt-16">
+          <CategoryIndex active={active} />
+
+          <div className="mt-14 space-y-24 sm:mt-16 sm:space-y-28">
+            {groups.map((group, index) => (
+              <CategorySection
+                key={group.id}
+                group={group}
+                index={index}
+                onOpen={(item) => setSelection({ item })}
+              />
+            ))}
+          </div>
         </div>
       </Section>
 

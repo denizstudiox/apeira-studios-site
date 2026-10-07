@@ -65,28 +65,54 @@ export const marquee = [
  *   linkLabel — text on that link. Defaults to "View project".
  *   repo      — optional source-code link, shown as a second "Source" link.
  *   credit    — optional contribution note for collaborative projects
- *   featured  — spans the full row
+ *   category  — id from `workCategories` below; decides which group it sits in
  *   wip       — renders as "In development", no link
  */
+
+// The groups the work is presented in, in page order.
+export const workCategories = [
+  {
+    id: "games",
+    label: "Games & Mods",
+    blurb: "Things you play — a standalone horror game and Minecraft content shipped across every major loader.",
+  },
+  {
+    id: "interactive",
+    label: "XR & Interactive",
+    blurb: "VR experiences, a café kiosk and real-time effects — work you step into or touch rather than install.",
+  },
+  {
+    id: "apps",
+    label: "Apps & Extensions",
+    blurb: "Small, focused software on phones and in the browser, published on Google Play and the Chrome Web Store.",
+  },
+  {
+    id: "tools",
+    label: "Desktop Tools",
+    blurb: "Utilities and dashboards for Windows and the desktop, open source and portable.",
+  },
+];
 export const work = [
   {
     title: "The Flawed Architect",
+    category: "games",
     tag: "Psychological Horror",
     year: "2026",
-    credit: "Free Windows playtest · In development",
+    credit: "Free full game · Out now",
     summary:
-      "An ordinary evening becomes a world coming apart. A first-person psychological horror game built in Unreal Engine, available as a free Windows playtest on itch.io.",
+      "The world ends. Something remains. A short, first-person psychological horror game about the apocalypse and unsettling divine themes, built in Unreal Engine and available free on itch.io.",
     stack: ["Unreal Engine", "Windows", "Single player", "itch.io"],
-    href: "https://apeira-studios.itch.io/apocalypse",
-    linkLabel: "View Windows playtest",
+    href: "https://apeira-studios.itch.io/the-flawed-architect",
+    linkLabel: "Download free on itch.io",
     details:
-      "A first-person psychological horror experience about a familiar world slowly falling apart. The game is in development, with a free Windows playtest available on itch.io and a feedback form for bug reports and player impressions.",
+      "A short, first-person psychological horror game about the apocalypse and unsettling divine themes. Step beyond the familiar and face what you cannot understand. The full game is out now as a free Windows download on itch.io, with a feedback form for bug reports and player impressions.",
     highlights: [
       "First-person psychological horror",
+      "Apocalypse, atmosphere and divine dread",
       "Built in Unreal Engine",
-      "Free Windows playtest on itch.io",
-      "Single-player, English, keyboard and mouse",
-      "In development, with playtest feedback welcome",
+      "Free full game for Windows on itch.io",
+      "Single-player, English, about 40 minutes",
+      "Keyboard and mouse, headphones recommended",
     ],
     images: [
       { src: "/projects/flawed-architect-01.webp", alt: "The Flawed Architect living room and emergency broadcast", tone: "#b95151" },
@@ -101,10 +127,10 @@ export const work = [
       fit: "contain",
       tone: "#b95151",
     },
-    featured: true,
   },
   {
     title: "Immortal Snail: No Escape",
+    category: "games",
     tag: "Minecraft Mod",
     year: "2026",
     summary:
@@ -132,10 +158,10 @@ export const work = [
       tone: "#d2a45e",
       position: "center 58%",
     },
-    featured: true,
   },
   {
     title: "Kubik",
+    category: "apps",
     tag: "Android App",
     year: "2026",
     summary:
@@ -160,10 +186,10 @@ export const work = [
       fit: "icon",
       tone: "#29d8b0",
     },
-    featured: true,
   },
   {
     title: "Eco Quest",
+    category: "interactive",
     tag: "VR Experience",
     year: "2026",
     credit: "Team project · Developer",
@@ -195,6 +221,7 @@ export const work = [
   },
   {
     title: "Sort It!",
+    category: "interactive",
     tag: "VR Game",
     year: "2026",
     credit: "Team project · Developer",
@@ -225,6 +252,7 @@ export const work = [
   },
   {
     title: "Choose Your Mood",
+    category: "interactive",
     tag: "Interactive Kiosk",
     year: "2026",
     summary:
@@ -259,6 +287,7 @@ export const work = [
   },
   {
     title: "Unlimited Void",
+    category: "interactive",
     tag: "VFX",
     year: "2026",
     summary:
@@ -289,6 +318,7 @@ export const work = [
   },
   {
     title: "Shorts Shield",
+    category: "apps",
     tag: "Extension",
     year: "2026",
     summary:
@@ -317,6 +347,7 @@ export const work = [
   },
   {
     title: "RoFilter",
+    category: "apps",
     tag: "Extension",
     year: "2026",
     summary:
@@ -346,6 +377,7 @@ export const work = [
   },
   {
     title: "WTTG2 Organizer",
+    category: "tools",
     tag: "Tool",
     year: "2026",
     summary:
@@ -374,6 +406,7 @@ export const work = [
   },
   {
     title: "dpi-easy",
+    category: "tools",
     tag: "Desktop",
     year: "2026",
     summary:
