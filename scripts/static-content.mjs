@@ -46,7 +46,7 @@ const content = `<main class="studio-static">
     <img src="/projects/brewai-moodi.png" alt="Moodi animated character interface — development screenshot" width="1440" height="900">
     <p>${escape(brewai.summary)}</p>
     <p>Guests interact with a playful character through Turkish voice conversation and animated expressions. The application includes server-side menu tools, a background advisor, answer review and a staff panel.</p>
-    <p class="credit">Character interface shown in development. Brewai does not currently use the Claude API.</p>
+    <p class="credit">Character interface shown in development.</p>
   </section>
   <section id="released-game" class="release" aria-labelledby="release-title">
     <h2 id="release-title">The Flawed Architect</h2>

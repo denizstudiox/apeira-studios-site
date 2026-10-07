@@ -112,7 +112,7 @@ export const work = [
     stack: ["Conversational AI", "Voice", "Node.js", "Kiosk"],
     href: "/studio.html#brewai",
     linkLabel: "About Brewai",
-    details: "Moodi brings a playful character to a café screen, with expressive eyes, a voice-responsive mouth and natural conversation. Server-side menu tools support recommendations, while a background advisor and answer review help keep responses tied to the approved menu. A staff panel manages the menu and kiosk workflow. The current implementation uses other AI providers; it does not currently use the Claude API.",
+    details: "Moodi brings a playful character to a café screen, with expressive eyes, a voice-responsive mouth and natural conversation. Server-side menu tools support recommendations, while a background advisor and answer review help keep responses tied to the approved menu. A staff panel manages the menu and kiosk workflow.",
     highlights: [
       "Developed in collaboration with a Brewmood branch",
       "Turkish voice conversation and animated expressions",
