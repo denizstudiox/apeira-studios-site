@@ -18,6 +18,11 @@ npm run preview   # preview the production build
 Headline, projects, capabilities, process, links, e-mail — all of it.
 No component needs to be touched to change copy.
 
+`npm run build` also generates readable initial HTML and `/studio.html` from
+the same content, plus Organization structured data, `robots.txt` and a sitemap.
+The studio and project links remain accessible without JavaScript. React replaces
+the initial fallback when the interactive page loads.
+
 To add a project, append an object to the `work` array:
 
 ```js

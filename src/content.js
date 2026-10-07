@@ -11,7 +11,9 @@ export const site = {
   founder: "Deniz Akkoyun",
   role: "Founder & Developer",
   location: "Türkiye",
-  email: "apeirastudios@gmail.com",
+  email: "deniz@apeirastudios.me",
+  operatingSince: "October 2025",
+  profile: "Apeira Studios is an independent game development studio in Türkiye, founded and run by Deniz Akkoyun. Operating since October 2025, the studio builds games, mods and software tools. Its released Unreal Engine 5 game, The Flawed Architect, is available free for Windows on itch.io.",
   github: "https://github.com/denizstudiox",
   linkedin: "https://www.linkedin.com/in/deniz-akkoyun/",
   // Optional — leave as "" to hide the link
@@ -35,7 +37,7 @@ export const hero = {
     [{ t: "mods and " }, { t: "tools.", glow: true }],
   ],
   intro:
-    "Apeira Studios is the independent practice of Deniz Akkoyun — shipping Minecraft mods, Android apps, browser extensions and the tooling around them.",
+    "Apeira Studios is the independent game development studio of Deniz Akkoyun in Türkiye — shipping games, Minecraft mods, Android apps, browser extensions and the tooling around them.",
   primaryCta: { label: "See the work", href: "#work" },
   secondaryCta: { label: "Start a project", href: "#contact" },
   // Character-sheet style plate

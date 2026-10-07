@@ -75,13 +75,13 @@ export default function Contact() {
 
           <Reveal delay={0.4}>
             <div className="plate mystic-card relative mt-10 border border-line bg-panel/35 p-7 backdrop-blur-sm">
-              <p className="eyebrow">Currently</p>
+              <p className="eyebrow">The studio</p>
               <p className="mt-4 text-[14.5px] leading-relaxed text-muted">
-                Building{" "}
-                <span className="text-ink">{site.name}</span> from{" "}
-                {site.location} — open to collaborations, contract work and
-                interesting problems.
+                {site.profile}
               </p>
+              <a href="/studio.html" className="mt-5 inline-flex items-center gap-2 text-sm text-ink hover:text-accent">
+                Studio &amp; releases <ArrowUpRight className="size-4" />
+              </a>
             </div>
           </Reveal>
         </div>
