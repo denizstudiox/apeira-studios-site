@@ -43,8 +43,9 @@ To add a project, append an object to the `work` array:
 The whole card is clickable via `href`; `repo` renders as a separate link on top
 of it.
 
-### Still to fill in
-- `public/og.png` — 1200x630 social preview image, referenced by `index.html`.
+### Social preview
+- `public/og.jpg` — existing 1200x630 artwork, referenced by `index.html`. Verified locally on 17 October 2026; no new image is required.
+- Deployment: `apeirastudios.me` is published from `denizstudiox/apeira-studios-site` `main` by `.github/workflows/deploy.yml` (verified via GitHub Pages API on 9 November 2026).
 
 ## The three layers
 

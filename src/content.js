@@ -49,9 +49,9 @@ export const hero = {
   secondaryCta: { label: "Start a project", href: "#contact" },
   // Character-sheet style plate
   stats: [
-    { value: "12", label: "Projects" },
-    { value: "04", label: "Marketplaces" },
-    { value: "04", label: "Platforms" },
+    { value: "Games", label: "Released & in development" },
+    { value: "Mods", label: "Minecraft systems" },
+    { value: "Tools", label: "Desktop & mobile" },
     { value: "2025", label: "Studio started" },
   ],
 };
@@ -93,7 +93,7 @@ export const workCategories = [
   {
     id: "apps",
     label: "Apps & Extensions",
-    blurb: "Small, focused software on phones and in the browser, published on Google Play and the Chrome Web Store.",
+    blurb: "Focused Android software and browser extensions, with project and store links where available.",
   },
   {
     id: "tools",
@@ -194,17 +194,19 @@ export const work = [
     tag: "Android App",
     year: "2026",
     summary:
-      "A speedcubing timer built for people who actually compete: WCA scrambles across every event, two-finger Stackmat mode, and WCA-compliant statistics — ao5, ao12, ao50, ao100, mo3. Fully offline, no accounts, nothing leaves the device.",
-    stack: ["Android", "Google Play", "Offline-first"],
+      "An Android speedcubing timer with offline timing, scramble generation and session statistics. Two-finger touchscreen controls support practice; scramble methods vary by puzzle. Ads and privacy SDKs may use the network.",
+    credit: "Android app",
+    stack: ["Android", "Offline practice", "Local solve history"],
     href: "https://denizstudiox.github.io/kubik/",
     linkLabel: "View project",
     details:
-      "A focused Android companion for speedcubers. The interface is designed around fast repetition: generate a valid scramble, inspect, solve, record and immediately understand the session without an account or network connection.",
+      "Kubik is a practice timer for speedcubers: offline timing, scramble generation and session statistics. Solve history is stored on your phone, and you can export it as JSON/CSV; Android backup can include it. The timer screen is ad-free; a single banner ad (Google AdMob, with a consent screen) appears under the other tabs. Kubik is a practice tool and is not certified for official WCA competitions.",
     highlights: [
-      "Official-style scrambles across WCA events",
-      "Two-finger Stackmat interaction mode",
-      "ao5, ao12, ao50, ao100 and mo3 statistics",
-      "Offline-first and account-free",
+      "Scrambles for common puzzles (generation method varies by puzzle)",
+      "Two-finger touchscreen start, Stackmat-style (no hardware timer needed)",
+      "ao5, ao12, ao50, ao100 and mo3 session statistics",
+      "Works offline; the internet is only used for ads",
+      "Local solve history, with JSON/CSV export and Android backup",
     ],
     images: [
       { src: "/projects/kubik-icon.webp", alt: "Kubik application cube mark", fit: "icon", tone: "#29d8b0" },
@@ -351,7 +353,7 @@ export const work = [
     tag: "Extension",
     year: "2026",
     summary:
-      "Removes YouTube Shorts everywhere on the platform using a pure CSS architecture — display:none paired with :has() selectors, so there is no runtime cost at all.",
+      "A browser extension that hides YouTube Shorts surfaces using CSS selectors, with a lightweight JavaScript guard for explicit Shorts URLs.",
     stack: ["Manifest V3", "CSS :has()", "JavaScript"],
     href: "https://chromewebstore.google.com/detail/shorts-shield/nnhhbjdginblkbojacgppopedghflbdg",
     linkLabel: "Chrome Web Store",
@@ -360,9 +362,9 @@ export const work = [
       "A deliberately tiny browser extension for reclaiming attention. Its CSS-first architecture removes Shorts surfaces without continuous DOM work, while a lightweight guard redirects explicit Shorts URLs to the standard player.",
     highlights: [
       "Removes Shorts shelves, grids and navigation entries",
-      "CSS-first architecture with no layout thrashing",
+      "CSS selectors hide Shorts surfaces",
       "Instant enable and disable control",
-      "Desktop Chromium and Kiwi Browser support",
+      "Designed for compatible Chromium browsers",
     ],
     images: [
       { src: "/projects/shorts-icon-hq.webp", alt: "Shorts Shield extension mark", fit: "icon", tone: "#ff5f57" },
@@ -415,10 +417,10 @@ export const work = [
     href: "https://github.com/denizstudiox/WTTG2Organizer",
     linkLabel: "View source",
     details:
-      "A companion dashboard for Welcome to the Game II that consolidates targets, keys, Wi-Fi credentials and notes. The same state is synchronized in real time between its desktop window and a phone on the local network.",
+      "A fan-made companion dashboard for Welcome to the Game II that consolidates targets, game keys, in-game Wi-Fi credentials and gameplay notes. Desktop and phone access share state on the local network without sign-in, so use a trusted network. The first load can require CDN access. This is not an official game product.",
     highlights: [
       "Availability tracking, sorting and instant search",
-      "Key vault, Wi-Fi manager and secure notes",
+      "Game keys, Wi-Fi manager and gameplay notes",
       "Real-time phone and desktop synchronization",
       "Dedicated PyWebView desktop wrapper",
     ],
