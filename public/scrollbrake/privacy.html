@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ScrollBrake — Privacy Policy</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0B0E13; color: #EEF2F7; line-height: 1.65; max-width: 740px; margin: 0 auto; padding: 36px 20px; }
+    h1, h2 { color: #4AD6A8; }
+    p, li { color: #C7D0DF; }
+    .card { background: #131821; border: 1px solid #232B3A; border-radius: 14px; padding: 18px 20px; margin: 20px 0; }
+    a { color: #4AD6A8; }
+    code { background: #1A2130; padding: 2px 6px; border-radius: 5px; font-size: 0.92em; }
+  </style>
+</head>
+<body>
+  <h1>ScrollBrake — Privacy Policy</h1>
+  <p><strong>Effective date:</strong> November 23, 2026 &middot; <strong>Developer:</strong> Apeira Studios</p>
+
+  <div class="card">
+    <strong>Short version:</strong> Your blocking rules, focus statistics, personal notes, and Accessibility screen detection stay on your phone and are not uploaded to Apeira Studios, advertising or billing services. When you explicitly share a CSV or Focus Card, your selected app receives that content. Network access supports Google Play purchases, AdMob banners and Google UMP consent. Pro removes banner ads; Google Play still checks purchases and UMP may check consent requirements.
+  </div>
+
+  <h2>1. On-Device Data Storage</h2>
+  <p>ScrollBrake requires no user account. Your preferences, Focus Schedules, daily counters, watch duration, daily limits, and optional personal reminder are stored locally on your device in private app storage. Android cloud backup and device-to-device transfer are disabled (<code>allowBackup=false</code>).</p>
+  <p>If you choose to export your focus statistics as a CSV file (Pro feature), the file is created locally and shared with the destination you choose in Android's share sheet. You can also share a Focus Card image containing weekly statistics. Shared copies are controlled by you and the receiving service; clearing ScrollBrake storage does not delete those copies.</p>
+
+  <h2>2. How AccessibilityService Is Used</h2>
+  <p>ScrollBrake requests Android's Accessibility Service solely to provide its core user-facing feature: detecting when Instagram Reels, YouTube Shorts, TikTok, Facebook Reels, or Snapchat Spotlight are opened so it can display your optional mindful pause screen, show your floating counter, or navigate back when blocking is enabled.</p>
+  <ul>
+    <li>ScrollBrake receives window and scroll events to identify supported apps. In a supported app it inspects screen structure, view IDs, selected states and navigation labels to distinguish short-feed screens. Other apps' content is not used for feed detection.</li>
+    <li>Screen-tree access can expose text and content descriptions. ScrollBrake uses navigation labels for detection; it does not intentionally extract or store message bodies, passwords, typed text or video content.</li>
+    <li><strong>Raw accessibility events, screen trees and detected navigation text are not transmitted off your device</strong> and are never shared with advertising or billing SDKs. Aggregate focus statistics (such as daily counts derived from detection) leave the app only when you explicitly export a CSV or share a Focus Card with a destination you choose.</li>
+  </ul>
+
+  <p>This is a digital wellbeing app, not an accessibility tool designed primarily for people with disabilities. Enabling the service is optional and requires explicit action in Android Settings. You can decline the onboarding request or disable ScrollBrake under Android Settings &rarr; Accessibility at any time. Protection requires the service to be enabled.</p>
+
+  <h2>3. Advertising and Consent</h2>
+  <p>To keep Instagram and YouTube blocking free for everyone, the free version of ScrollBrake displays a non-intrusive banner ad inside the ScrollBrake app via <strong>Google AdMob</strong>. Ads are never shown on pause screens, block screens, or during onboarding, and are completely disabled when ScrollBrake Pro is active.</p>
+  <p>Google AdMob collects and shares IP addresses (which can infer approximate location), device/app identifiers (including advertising ID where available), app/ad interactions and diagnostic performance information for advertising, analytics and fraud prevention under <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google's Advertising Privacy Policy</a>. AdMob documents TLS encryption in transit. ScrollBrake uses Google's User Messaging Platform (UMP) to present the configured privacy message where required, including the EEA, UK and Switzerland. Ad requests wait for UMP eligibility; declining personalized ads does not necessarily prevent limited ads or all SDK processing. Where UMP requires privacy options, revisit <em>Settings &rarr; Ad privacy choices</em>. UMP may process consent-related device/request information under Google's policy. Advertising identifiers can also be reset or deleted in Android settings.</p>
+
+  <h2>4. In-App Purchases &amp; Subscriptions</h2>
+  <p>ScrollBrake Pro is processed by <strong>Google Play Billing</strong>. Apeira Studios does not receive your payment card details. The app receives product and purchase status, sends purchase tokens to Google Play for acknowledgement and stores the Pro entitlement locally. There is no Apeira purchase-verification server. Monthly and yearly plans renew unless canceled through Google Play; lifetime is a one-time purchase. The optional 3-day cardless local trial ends automatically without charging and does not start a paid subscription. Google Play handles renewals, cancellations and refunds under the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</p>
+
+  <h2>5. Data Deletion</h2>
+  <p>Apeira Studios does not maintain user accounts or remote app databases. Local settings, counters and entitlement cache remain until you clear app storage in Android Settings or uninstall ScrollBrake. Exported/shared files may remain in the destination you chose. Clearing app data does not cancel a Google Play subscription or delete Google purchase or advertising records. Manage subscriptions in Google Play and Google-held data through <a href="https://myaccount.google.com/data-and-privacy">Google Account privacy controls</a>. Google determines retention for its records under its policies. Contact us for privacy requests; we can help identify relevant controls but cannot erase records we do not hold.</p>
+
+  <h2>6. Contact</h2>
+  <p>Questions or privacy requests? Contact Apeira Studios at <a href="mailto:deniz@apeirastudios.me">deniz@apeirastudios.me</a>.</p>
+</body>
+</html>
