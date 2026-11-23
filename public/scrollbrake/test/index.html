@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ScrollBrake — Kapalı Beta Testine Katıl</title>
+  <meta name="description" content="Instagram Reels ve YouTube Shorts'u engelle, mesajlarını ve uzun videolarını açık tut. ScrollBrake Android kapalı testine 2 adımda anında katıl." />
+  <meta property="og:title" content="ScrollBrake — Kapalı Beta Testine Katıl" />
+  <meta property="og:description" content="Reels ve Shorts'u durdur, dikkatini geri kazan. Android kapalı testine 10 saniyede katıl." />
+  <meta property="og:image" content="https://apeirastudios.me/scrollbrake/icon.png" />
+  <link rel="icon" type="image/png" href="../icon.png" />
+  <style>
+    :root {
+      --bg: #0e100d;
+      --surface: #171a16;
+      --surface-hi: #21251f;
+      --border: rgba(255, 255, 255, 0.10);
+      --sage: #8fb892;
+      --sage-dim: rgba(143, 184, 146, 0.16);
+      --gold: #dfbe7e;
+      --gold-dim: rgba(223, 190, 126, 0.15);
+      --text: #f3f1ec;
+      --muted: #9fa49a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(640px 420px at 50% -60px, rgba(143, 184, 146, 0.16), transparent 70%),
+        radial-gradient(500px 380px at 85% 95%, rgba(223, 190, 126, 0.09), transparent 70%),
+        var(--bg);
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px 48px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--sage-dim);
+      border: 1px solid rgba(143, 184, 146, 0.35);
+      color: var(--sage);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--sage);
+      box-shadow: 0 0 10px var(--sage);
+    }
+    .lang-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .lang-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+
+    .hero {
+      text-align: center;
+      padding: 12px 6px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .app-icon {
+      width: 84px; height: 84px; border-radius: 22px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 0 1.5px rgba(255, 255, 255, 0.12);
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+    h1 span { color: var(--sage); }
+    .lead {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 390px;
+    }
+
+    .card {
+      background: linear-gradient(160deg, rgba(28, 32, 27, 0.92), rgba(20, 22, 19, 0.96));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+    .card.step1 { border-color: rgba(143, 184, 146, 0.35); }
+    .card.step2 { border-color: rgba(223, 190, 126, 0.35); }
+
+    .step-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .step-num {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800; flex-shrink: 0;
+    }
+    .step1 .step-num { background: var(--sage); color: #0e100d; }
+    .step2 .step-num { background: var(--gold); color: #16130c; }
+    .step-title { font-size: 17px; font-weight: 700; }
+    .step-desc { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.12s ease, opacity 0.15s ease;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-sage {
+      background: linear-gradient(135deg, #98c29b, #739976);
+      color: #0d100d;
+      box-shadow: 0 10px 26px rgba(124, 154, 126, 0.25);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #e5c689, #c59f5d);
+      color: #14120c;
+      box-shadow: 0 10px 26px rgba(201, 169, 110, 0.24);
+    }
+    .btn-ghost {
+      margin-top: 10px;
+      background: var(--surface-hi);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 12px 16px;
+    }
+
+    .tips {
+      display: grid;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+    .tip-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .tip-ico { color: var(--sage); font-weight: 800; flex-shrink: 0; }
+    .tip-item strong { color: var(--text); }
+
+    .note {
+      background: var(--gold-dim);
+      border: 1px solid rgba(223, 190, 126, 0.30);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #e6d7b8;
+    }
+    footer {
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    footer a { color: var(--sage); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <div class="badge"><span class="dot"></span><span data-i18n="badge">Android Kapalı Beta</span></div>
+      <button class="lang-btn" id="langToggle" type="button">EN</button>
+    </div>
+
+    <section class="hero">
+      <img class="app-icon" src="../icon.png" alt="ScrollBrake" />
+      <h1 data-i18n="title">ScrollBrake <span>Testine Katıl</span></h1>
+      <p class="lead" data-i18n="lead">
+        Instagram Reels ve YouTube Shorts'u engelle; mesajların, hikâyelerin ve uzun videoların açık kalsın. Aşağıdaki 2 adımla saniyeler içinde anında erişim açılır.
+      </p>
+    </section>
+
+    <section class="card step1">
+      <div class="step-head">
+        <div class="step-num">1</div>
+        <div class="step-title" data-i18n="s1Title">Test Grubuna Katıl (1 Tık)</div>
+      </div>
+      <p class="step-desc" data-i18n="s1Desc">
+        Aşağıdaki butona basıp <strong>"Gruba katıl"</strong> de. Onay beklemeden Google Play kapalı test erişimin anında açılır.
+      </p>
+      <a class="btn btn-sage" href="https://groups.google.com/g/scrollbrake-testers" target="_blank" rel="noopener noreferrer" data-i18n="s1Btn">
+        Google Test Grubuna Katıl →
+      </a>
+    </section>
+
+    <section class="card step2">
+      <div class="step-head">
+        <div class="step-num">2</div>
+        <div class="step-title" data-i18n="s2Title">Google Play'den İndir</div>
+      </div>
+      <p class="step-desc" data-i18n="s2Desc">
+        Gruba katıldıktan sonra Google Play test sayfasından <strong>"Test kullanıcısı ol"</strong> diyerek uygulamayı telefonuna kur.
+      </p>
+      <a class="btn btn-gold" href="https://play.google.com/apps/testing/com.apeirastudios.scrollbrake" target="_blank" rel="noopener noreferrer" data-i18n="s2Btn">
+        Web'de Test Kullanıcısı Ol →
+      </a>
+      <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.apeirastudios.scrollbrake" target="_blank" rel="noopener noreferrer" data-i18n="s2Play">
+        Google Play Mağaza Sayfasını Aç
+      </a>
+    </section>
+
+    <div class="note" data-i18n="note">
+      <strong>Önemli:</strong> 1. ve 2. adımda telefonundaki <strong>Google Play ile aynı Gmail hesabını</strong> kullan. Google Play kuralı gereği uygulamayı en az 14 gün telefonunda yüklü tutman çok yardımcı olur.
+    </div>
+
+    <section class="card">
+      <div class="tips">
+        <div class="tip-item"><span class="tip-ico">✓</span><span data-i18n="t1"><strong>Instagram &amp; YouTube hep ücretsiz:</strong> DM, Hikâyeler ve normal videolar etkilenmez.</span></div>
+        <div class="tip-item"><span class="tip-ico">✓</span><span data-i18n="t2"><strong>3 Gün Kartsız Pro Deneme:</strong> Kart istemez, otomatik çekim yapmaz.</span></div>
+        <div class="tip-item"><span class="tip-ico">✓</span><span data-i18n="t3"><strong>Gizlilik önce gelir:</strong> Hesap gerekmez, kurallar ve algılama cihazında kalır.</span></div>
+      </div>
+    </section>
+
+    <footer>
+      Apeira Studios · <a href="../privacy.html" data-i18n="privacy">Gizlilik Politikası</a> · <a href="mailto:deniz@apeirastudios.me">deniz@apeirastudios.me</a>
+    </footer>
+  </main>
+
+  <script>
+    const copy = {
+      tr: {
+        badge: 'Android Kapalı Beta',
+        title: 'ScrollBrake <span>Testine Katıl</span>',
+        lead: "Instagram Reels ve YouTube Shorts'u engelle; mesajların, hikâyelerin ve uzun videoların açık kalsın. Aşağıdaki 2 adımla saniyeler içinde anında erişim açılır.",
+        s1Title: 'Test Grubuna Katıl (1 Tık)',
+        s1Desc: 'Aşağıdaki butona basıp <strong>"Gruba katıl"</strong> de. Onay beklemeden Google Play kapalı test erişimin anında açılır.',
+        s1Btn: 'Google Test Grubuna Katıl →',
+        s2Title: "Google Play'den İndir",
+        s2Desc: 'Gruba katıldıktan sonra Google Play test sayfasından <strong>"Test kullanıcısı ol"</strong> diyerek uygulamayı telefonuna kur.',
+        s2Btn: "Web'de Test Kullanıcısı Ol →",
+        s2Play: 'Google Play Mağaza Sayfasını Aç',
+        note: '<strong>Önemli:</strong> 1. ve 2. adımda telefonundaki <strong>Google Play ile aynı Gmail hesabını</strong> kullan. Google Play kuralı gereği uygulamayı en az 14 gün telefonunda yüklü tutman çok yardımcı olur.',
+        t1: '<strong>Instagram &amp; YouTube hep ücretsiz:</strong> DM, Hikâyeler ve normal videolar etkilenmez.',
+        t2: '<strong>3 Gün Kartsız Pro Deneme:</strong> Kart istemez, otomatik çekim yapmaz.',
+        t3: '<strong>Gizlilik önce gelir:</strong> Hesap gerekmez, kurallar ve algılama cihazında kalır.',
+        privacy: 'Gizlilik Politikası',
+        toggle: 'EN'
+      },
+      en: {
+        badge: 'Android Closed Beta',
+        title: 'Join the <span>ScrollBrake Beta</span>',
+        lead: 'Block Instagram Reels & YouTube Shorts while keeping DMs, Stories, and full videos open. Complete the 2 quick steps below for instant Google Play access.',
+        s1Title: 'Join the Tester Group (1 Tap)',
+        s1Desc: 'Tap below and click <strong>"Join group"</strong>. Your Google Play closed beta access unlocks instantly with no manual approval.',
+        s1Btn: 'Join Google Tester Group →',
+        s2Title: 'Install on Google Play',
+        s2Desc: 'Right after joining the group, opt in as a tester on Google Play and install ScrollBrake on your Android phone.',
+        s2Btn: 'Become a Tester on Google Play →',
+        s2Play: 'Open Google Play Store Page',
+        note: '<strong>Tip:</strong> Use the <strong>same Google account</strong> signed into Google Play on your phone for both steps. Keeping the app installed for 14 days helps us launch to everyone!',
+        t1: '<strong>Free forever for Instagram &amp; YouTube:</strong> DMs, Stories &amp; full videos stay untouched.',
+        t2: '<strong>3-Day Cardless Pro Trial:</strong> Zero credit card, zero auto-charge.',
+        t3: '<strong>Private by design:</strong> No account needed; detection stays on your device.',
+        privacy: 'Privacy Policy',
+        toggle: 'TR'
+      }
+    };
+    let lang = (navigator.language || '').toLowerCase().startsWith('tr') ? 'tr' : 'en';
+    function applyLang() {
+      const c = copy[lang];
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (c[k]) el.innerHTML = c[k];
+      });
+      document.getElementById('langToggle').textContent = c.toggle;
+    }
+    document.getElementById('langToggle').addEventListener('click', () => {
+      lang = lang === 'tr' ? 'en' : 'tr';
+      applyLang();
+    });
+    applyLang();
+  </script>
+</body>
+</html>
