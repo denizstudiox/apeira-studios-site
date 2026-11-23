@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { hero } from "../content";
-import { Button, EASE } from "./ui";
+import { ArrowUpRight, Button, EASE } from "./ui";
 import { Fireflies } from "./Landscape";
 
 export default function Hero() {
@@ -103,11 +103,43 @@ export default function Hero() {
             </Button>
           </motion.div>
 
+          {hero.spotlight && (
+            <motion.a
+              href={hero.spotlight.href}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.12, ease: EASE }}
+              className="group mt-8 flex max-w-2xl flex-col gap-3 border border-[#8fb892]/35 bg-[#0c110d]/70 px-5 py-4 backdrop-blur-xl transition-colors duration-300 hover:border-[#8fb892]/70 hover:bg-[#111812]/80 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.18em] text-[#8fb892]">
+                    <span className="relative flex size-1.5">
+                      <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#8fb892] opacity-65" />
+                      <span className="relative inline-flex size-1.5 rounded-full bg-[#8fb892]" />
+                    </span>
+                    {hero.spotlight.badge}
+                  </span>
+                  <span className="text-[13px] font-medium text-ink">
+                    {hero.spotlight.title}
+                  </span>
+                </div>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
+                  {hero.spotlight.body}
+                </p>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-1.5 self-start rounded-full border border-[#8fb892]/45 bg-[#8fb892]/15 px-4 py-2 text-[12px] font-medium text-[#d7ebd8] transition-colors duration-300 group-hover:bg-[#8fb892] group-hover:text-[#0b0f0b] sm:self-center">
+                {hero.spotlight.cta}
+                <ArrowUpRight className="size-3.5" />
+              </span>
+            </motion.a>
+          )}
+
           <motion.dl
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 1.25, ease: EASE }}
-            className="mystic-stats mt-16 grid max-w-2xl grid-cols-2 gap-px overflow-hidden border border-line/80 bg-line/70 backdrop-blur-xl sm:grid-cols-4"
+            className="mystic-stats mt-12 grid max-w-2xl grid-cols-2 gap-px overflow-hidden border border-line/80 bg-line/70 backdrop-blur-xl sm:grid-cols-4"
           >
             {hero.stats.map((s) => (
               <div key={s.label} className="group relative bg-void/55 px-5 py-5 transition-colors duration-500 hover:bg-panel/80">

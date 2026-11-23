@@ -34,12 +34,21 @@ const releasedGame = work.find((project) => project.title === "The Flawed Archit
 if (!releasedGame) throw new Error("Missing released game");
 const brewai = work.find((project) => project.title === "Brewai — Moodi");
 if (!brewai) throw new Error("Missing Brewai project");
+const scrollbrake = work.find((project) => project.title === "ScrollBrake");
+if (!scrollbrake) throw new Error("Missing ScrollBrake project");
 const content = `<main class="studio-static">
   <h1>${escape(site.name)}</h1>
   <p>${escape(site.profile)}</p>
   <p>${escape(site.founder)} · ${escape(site.role)} · ${escape(site.location)}<br>Operating since ${escape(site.operatingSince)}</p>
   <p>${link(`mailto:${site.email}`, site.email)} · ${link(site.linkedin, "Founder on LinkedIn")} · ${link(site.github, "GitHub")}</p>
-  <nav aria-label="Studio page">${link("#brewai", "Brewai")}${link("#released-game", "Released game")}${link("#development", "Development")}${link("#work", "All projects")}${link("#contact", "Contact")}</nav>
+  <nav aria-label="Studio page">${link("#scrollbrake", "ScrollBrake Beta")}${link("#brewai", "Brewai")}${link("#released-game", "Released game")}${link("#development", "Development")}${link("#work", "All projects")}${link("#contact", "Contact")}</nav>
+  <section id="scrollbrake" class="release" aria-labelledby="scrollbrake-title">
+    <h2 id="scrollbrake-title">${escape(scrollbrake.title)}</h2>
+    <p>${escape(scrollbrake.credit)}</p>
+    <img src="/projects/scrollbrake-cover.webp" alt="ScrollBrake — Pause the feed, keep your life" width="1024" height="500">
+    <p>${escape(scrollbrake.summary)}</p>
+    <p>${link("/scrollbrake/test/", "Join the Android Closed Beta")} · ${link("/scrollbrake/privacy.html", "Privacy Policy")}</p>
+  </section>
   <section id="brewai" class="release" aria-labelledby="brewai-title">
     <h2 id="brewai-title">${escape(brewai.title)}</h2>
     <p>${escape(brewai.credit)}</p>
@@ -86,4 +95,4 @@ await writeFile(new URL("../dist/studio.html", import.meta.url), `<!doctype html
 ${structuredData}${styles}<style>body { margin: 0; background: #070611; }</style></head><body>${content}</body></html>`);
 await writeFile(new URL("../dist/robots.txt", import.meta.url), "User-agent: *\nAllow: /\nSitemap: https://apeirastudios.me/sitemap.xml\n");
 await writeFile(new URL("../dist/sitemap.xml", import.meta.url), `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://apeirastudios.me/</loc></url><url><loc>https://apeirastudios.me/studio.html</loc></url></urlset>\n`);
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://apeirastudios.me/</loc></url><url><loc>https://apeirastudios.me/studio.html</loc></url><url><loc>https://apeirastudios.me/scrollbrake/test/</loc></url><url><loc>https://apeirastudios.me/scrollbrake/privacy.html</loc></url></urlset>\n`);

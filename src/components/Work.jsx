@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { work, workCategories } from "../content";
 import { ArrowUpRight, EASE, Eyebrow, MaskLine, Reveal, Section } from "./ui";
 
+const isExternalHref = (href) => /^https?:\/\//i.test(href ?? "");
+
 function ProjectImage({ image, className = "" }) {
   const mode = image?.fit ?? "cover";
   const tone = image?.tone ?? "#766ee8";
@@ -43,6 +45,8 @@ function ProjectImage({ image, className = "" }) {
       <img
         src={image.src}
         alt={image.alt}
+        loading="lazy"
+        decoding="async"
         className={`h-full w-full transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${imageClass}`}
         style={{ objectPosition: image.position ?? "center" }}
       />
@@ -52,8 +56,86 @@ function ProjectImage({ image, className = "" }) {
   );
 }
 
+function FeaturedProjectCard({ item, onOpen }) {
+  const cover = item.poster ?? item.images[0];
+  const external = isExternalHref(item.href);
+
+  return (
+    <article className="group relative overflow-hidden border border-[#8fb892]/40 bg-panel/75 shadow-[0_30px_90px_-55px_rgba(143,184,146,0.42)] transition-colors duration-500 hover:border-[#8fb892]/75">
+      <button
+        type="button"
+        onClick={() => onOpen(item)}
+        aria-label={`Open details for ${item.title}`}
+        className="absolute inset-0 z-10 cursor-pointer"
+      />
+
+      <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(0,1fr)]">
+        <ProjectImage
+          image={cover}
+          className="aspect-[16/9] border-b border-line/80 lg:aspect-auto lg:min-h-[360px] lg:border-b-0 lg:border-r [&_img]:group-hover:scale-[1.03]"
+        />
+
+        <div className="pointer-events-none flex flex-col p-6 sm:p-8 lg:p-10">
+          <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-[9px] uppercase tracking-[0.18em]">
+            <span className="inline-flex items-center gap-2 text-[#8fb892]">
+              <span className="size-1.5 rounded-full bg-[#8fb892] shadow-[0_0_10px_#8fb892]" />
+              Featured · {item.tag}
+            </span>
+            <span className="text-faint">{item.year}</span>
+          </div>
+
+          <h4 className="display mt-4 text-[clamp(2rem,3.2vw,3rem)] leading-[0.98] text-ink">
+            {item.title}
+          </h4>
+
+          {item.credit && (
+            <p className="mt-3 font-mono text-[9px] uppercase tracking-[0.14em] text-[#dfbe7e]">
+              {item.credit}
+            </p>
+          )}
+
+          <p className="mt-4 text-[14.5px] leading-[1.8] text-muted">
+            {item.summary}
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            {item.stack.map((technology) => (
+              <span
+                key={technology}
+                className="border border-line/80 bg-void/45 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.08em] text-faint"
+              >
+                {technology}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-line/70 pt-6">
+            <span className="inline-flex items-center gap-2 text-[13px] text-accent transition-colors group-hover:text-accent-core">
+              Details &amp; gallery
+              <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+            </span>
+
+            {item.href && !item.wip && (
+              <a
+                href={item.href}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noreferrer noopener" : undefined}
+                className="pointer-events-auto relative z-20 inline-flex items-center gap-2 rounded-full border border-[#8fb892]/50 bg-[#8fb892]/15 px-5 py-2.5 text-[12.5px] font-medium text-[#e1f1e2] transition-colors duration-300 hover:bg-[#8fb892] hover:text-[#0b0f0b]"
+              >
+                {item.linkLabel ?? "Visit website"}
+                <ArrowUpRight className="size-3.5" />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function ProjectCard({ item, onOpen }) {
   const cover = item.poster ?? item.images[0];
+  const external = isExternalHref(item.href);
 
   return (
     <article className="group relative flex h-full flex-col overflow-hidden border border-line/90 bg-panel/70 shadow-[0_30px_80px_-60px_rgba(80,96,255,0.7)] transition-colors duration-500 hover:border-accent-dim/70">
@@ -107,17 +189,21 @@ function ProjectCard({ item, onOpen }) {
               <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
             </span>
 
-            {item.href && !item.wip && (
+            {item.href && !item.wip ? (
               <a
                 href={item.href}
-                target="_blank"
-                rel="noreferrer noopener"
+                target={external ? "_blank" : undefined}
+                rel={external ? "noreferrer noopener" : undefined}
                 className="pointer-events-auto relative z-20 inline-flex items-center gap-2 text-[12px] text-faint transition-colors hover:text-ink"
               >
                 {item.linkLabel ?? "Visit website"}
                 <ArrowUpRight className="size-3.5" />
               </a>
-            )}
+            ) : item.wip ? (
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+                {item.statusLabel ?? "In development"}
+              </span>
+            ) : null}
           </div>
         </div>
       </div>
@@ -150,6 +236,9 @@ function ProjectModal({ selection, onClose }) {
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [item, onClose]);
+
+  const primaryExternal = isExternalHref(item?.href);
+  const secondaryExternal = isExternalHref(item?.secondaryHref);
 
   return createPortal(
     <AnimatePresence>
@@ -271,14 +360,30 @@ function ProjectModal({ selection, onClose }) {
                 </div>
 
                 <div className="mt-auto flex flex-wrap gap-3 pt-12">
-                  {item.href && !item.wip && (
+                  {item.href && !item.wip ? (
                     <a
                       href={item.href}
-                      target="_blank"
-                      rel="noreferrer noopener"
+                      target={primaryExternal ? "_blank" : undefined}
+                      rel={primaryExternal ? "noreferrer noopener" : undefined}
                       className="inline-flex items-center gap-3 rounded-full border border-accent-core/30 bg-accent-core px-6 py-3 text-[13px] font-medium text-void shadow-[0_0_48px_-14px_rgba(164,177,255,0.75)] transition-transform hover:-translate-y-0.5"
                     >
                       {item.linkLabel ?? "Visit project"}
+                      <ArrowUpRight className="size-4" />
+                    </a>
+                  ) : item.wip ? (
+                    <span className="inline-flex items-center gap-2 rounded-full border border-line bg-void/60 px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+                      {item.statusLabel ?? "In development"}
+                    </span>
+                  ) : null}
+
+                  {item.secondaryHref && (
+                    <a
+                      href={item.secondaryHref}
+                      target={secondaryExternal ? "_blank" : undefined}
+                      rel={secondaryExternal ? "noreferrer noopener" : undefined}
+                      className="inline-flex items-center gap-3 rounded-full border border-line px-6 py-3 text-[13px] text-ink transition-colors hover:border-accent-dim"
+                    >
+                      {item.secondaryLabel ?? "Learn more"}
                       <ArrowUpRight className="size-4" />
                     </a>
                   )}
@@ -353,7 +458,9 @@ function CategoryIndex({ active }) {
 }
 
 function CategorySection({ group, index, onOpen }) {
-  const cols = group.items.length % 3 === 0 ? 3 : 2;
+  const featuredItems = group.items.filter((item) => item.featured);
+  const regularItems = group.items.filter((item) => !item.featured);
+  const cols = regularItems.length % 3 === 0 ? 3 : 2;
 
   return (
     <section
@@ -381,13 +488,27 @@ function CategorySection({ group, index, onOpen }) {
         </p>
       </Reveal>
 
-      <div className={`mt-8 grid gap-5 sm:mt-10 sm:gap-6 ${GRID_COLS[cols]}`}>
-        {group.items.map((item, itemIndex) => (
-          <Reveal key={item.title} delay={(itemIndex % cols) * 0.08} y={36}>
-            <ProjectCard item={item} onOpen={onOpen} />
-          </Reveal>
-        ))}
-      </div>
+      {featuredItems.length > 0 && (
+        <div className="mt-8 space-y-6 sm:mt-10">
+          {featuredItems.map((item) => (
+            <Reveal key={item.title} y={32}>
+              <FeaturedProjectCard item={item} onOpen={onOpen} />
+            </Reveal>
+          ))}
+        </div>
+      )}
+
+      {regularItems.length > 0 && (
+        <div
+          className={`${featuredItems.length > 0 ? "mt-6 sm:mt-8" : "mt-8 sm:mt-10"} grid gap-5 sm:gap-6 ${GRID_COLS[cols]}`}
+        >
+          {regularItems.map((item, itemIndex) => (
+            <Reveal key={item.title} delay={(itemIndex % cols) * 0.08} y={36}>
+              <ProjectCard item={item} onOpen={onOpen} />
+            </Reveal>
+          ))}
+        </div>
+      )}
     </section>
   );
 }
@@ -428,7 +549,7 @@ export default function Work() {
           <Reveal delay={0.2}>
             <p className="max-w-sm text-sm leading-relaxed text-faint">
               {work.length} projects in {groups.length} groups. Open any of them
-              for the full story, features and gallery, or go straight to the
+              for the full story, features and gallery, or jump straight to a
               live release.
             </p>
           </Reveal>
