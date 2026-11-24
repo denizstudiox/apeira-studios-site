@@ -115,6 +115,7 @@
     }
     .card.step1 { border-color: rgba(143, 184, 146, 0.35); }
     .card.step2 { border-color: rgba(223, 190, 126, 0.35); }
+    .card.step3 { border-color: rgba(143, 184, 146, 0.22); }
 
     .step-head {
       display: flex;
@@ -129,6 +130,7 @@
     }
     .step1 .step-num { background: var(--sage); color: #0e100d; }
     .step2 .step-num { background: var(--gold); color: #16130c; }
+    .step3 .step-num { background: var(--surface-hi); color: var(--sage); border: 1px solid rgba(143, 184, 146, 0.45); }
     .step-title { font-size: 17px; font-weight: 700; }
     .step-desc { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
 
@@ -242,6 +244,19 @@
       </a>
     </section>
 
+    <section class="card step3">
+      <div class="step-head">
+        <div class="step-num">3</div>
+        <div class="step-title" data-i18n="s3Title">Geri Bildirim Paylaş (30 sn)</div>
+      </div>
+      <p class="step-desc" data-i18n="s3Desc">
+        Birkaç gün denedikten sonra hata, öneri veya deneyimini kısa formdan ilet — her yorum doğrudan yeni sürüme yansıyor.
+      </p>
+      <a class="btn btn-ghost" style="margin-top: 0; border-color: rgba(143, 184, 146, 0.35); color: #e2f0e3;" href="https://docs.google.com/forms/d/e/1FAIpQLScA4oC2vCk9HY6VKvnZZIzZDK37NA1k2QeKS00c6jUKvvr5fg/viewform" target="_blank" rel="noopener noreferrer" data-i18n="s3Btn">
+        Geri Bildirim Formunu Aç →
+      </a>
+    </section>
+
     <div class="note" data-i18n="note">
       <strong>Önemli:</strong> 1. ve 2. adımda telefonundaki <strong>Google Play ile aynı Gmail hesabını</strong> kullan. Google Play kuralı gereği uygulamayı en az 14 gün telefonunda yüklü tutman çok yardımcı olur.
     </div>
@@ -272,6 +287,9 @@
         s2Desc: 'Gruba katıldıktan sonra Google Play test sayfasından <strong>"Test kullanıcısı ol"</strong> diyerek uygulamayı telefonuna kur.',
         s2Btn: "Web'de Test Kullanıcısı Ol →",
         s2Play: 'Google Play Mağaza Sayfasını Aç',
+        s3Title: 'Geri Bildirim Paylaş (30 sn)',
+        s3Desc: 'Birkaç gün denedikten sonra hata, öneri veya deneyimini kısa formdan ilet — her yorum doğrudan yeni sürüme yansıyor.',
+        s3Btn: 'Geri Bildirim Formunu Aç →',
         note: '<strong>Önemli:</strong> 1. ve 2. adımda telefonundaki <strong>Google Play ile aynı Gmail hesabını</strong> kullan. Google Play kuralı gereği uygulamayı en az 14 gün telefonunda yüklü tutman çok yardımcı olur.',
         t1: '<strong>Instagram &amp; YouTube hep ücretsiz:</strong> DM, Hikâyeler ve normal videolar etkilenmez.',
         t2: '<strong>3 Gün Kartsız Pro Deneme:</strong> Kart istemez, otomatik çekim yapmaz.',
@@ -290,6 +308,9 @@
         s2Desc: 'Right after joining the group, opt in as a tester on Google Play and install ScrollBrake on your Android phone.',
         s2Btn: 'Become a Tester on Google Play →',
         s2Play: 'Open Google Play Store Page',
+        s3Title: 'Share Feedback (30 sec)',
+        s3Desc: 'After trying ScrollBrake for a day or two, share any bugs, device quirks, or ideas — every response helps shape the public release.',
+        s3Btn: 'Open Feedback Form →',
         note: '<strong>Tip:</strong> Use the <strong>same Google account</strong> signed into Google Play on your phone for both steps. Keeping the app installed for 14 days helps us launch to everyone!',
         t1: '<strong>Free forever for Instagram &amp; YouTube:</strong> DMs, Stories &amp; full videos stay untouched.',
         t2: '<strong>3-Day Cardless Pro Trial:</strong> Zero credit card, zero auto-charge.',
